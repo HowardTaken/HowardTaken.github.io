@@ -150,15 +150,15 @@ nav.tabs a.active{color:var(--link);border-bottom-color:var(--link)}
 .intro{display:grid;grid-template-columns:190px 1fr;gap:36px;align-items:start}
 @media(max-width:680px){.intro{grid-template-columns:1fr;gap:24px}}
 
-.photo{
+.avatar{
   width:190px;height:190px;border-radius:50%;
-  background:var(--bg-alt);border:1px dashed var(--line-2);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:6px;color:var(--text-3);font-size:.82rem;text-align:center;padding:14px;
-  overflow:hidden;
+  background:var(--link);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:3.5rem;font-weight:600;letter-spacing:.02em;
+  overflow:hidden;user-select:none;
 }
-.photo svg{opacity:.5}
-@media(max-width:680px){.photo{width:150px;height:150px}}
+img.avatar{object-fit:cover}
+@media(max-width:680px){.avatar{width:150px;height:150px;font-size:2.8rem}}
 
 .intro h1{margin-bottom:4px}
 .intro .tagline{font-size:1.12rem;color:var(--text-2);margin-bottom:16px}
@@ -280,16 +280,6 @@ a.contact-card .v{color:var(--link)}
 /* ------------------------------------------------------------------
    Placeholders + footer
    ------------------------------------------------------------------ */
-.note{
-  background:var(--note-bg);border-left:3px solid var(--note-line);
-  color:var(--note-text);padding:2px 7px;border-radius:0 3px 3px 0;
-  font-size:.94em;
-}
-.note-block{
-  background:var(--note-bg);border-left:3px solid var(--note-line);
-  color:var(--note-text);padding:12px 16px;border-radius:0 4px 4px 0;
-  font-size:.92rem;margin-top:14px;
-}
 
 footer.site-footer{
   border-top:1px solid var(--line);padding:24px 0 40px;
@@ -338,13 +328,7 @@ html{scroll-behavior:smooth}
 
   <div class="block">
     <div class="intro">
-      <div class="photo">
-        <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
-          <circle cx="12" cy="8.5" r="3.8"></circle>
-          <path d="M4.5 20c0-4 3.4-6.4 7.5-6.4s7.5 2.4 7.5 6.4"></path>
-        </svg>
-        <span>Add a headshot</span>
-      </div>
+      <div class="avatar" aria-label="Haoran Ding">HD</div>
       <div>
         <h1>Haoran Ding</h1>
         <p class="tagline">Electrical engineering student at UCLA</p>
@@ -355,7 +339,7 @@ html{scroll-behavior:smooth}
         <div class="btn-row">
           <a class="btn primary" href="#resume">View my resume</a>
           <a class="btn" href="#contact">Get in touch</a>
-          <a class="btn" href="assets/resume.pdf" target="_blank" rel="noopener">Download PDF</a>
+          <a class="btn" href="Haoran_Ding_Resume.pdf" target="_blank" rel="noopener">Download PDF</a>
         </div>
       </div>
     </div>
@@ -420,19 +404,9 @@ html{scroll-behavior:smooth}
 
       <p>I'm also interested in how language models handle technical reasoning. I work part-time at Handshake AI reviewing model output in engineering and CS domains, and I've built a few things on top of LLMs — a financial research agent, and a retrieval system over semiconductor physics papers that I use for my own lab reading.</p>
 
-      <p class="note">Add a paragraph here about something outside of engineering — how you spend your time, where you grew up, something you're into. It makes the page feel like a person rather than a resume.</p>
     </div>
 
     <aside class="sidebar">
-      <div class="photo" style="width:100%;height:240px;border-radius:6px">
-        <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
-          <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-          <circle cx="9" cy="10.5" r="1.8"></circle>
-          <path d="M3 17l5-4 3.5 3 3-2.5L21 17"></path>
-        </svg>
-        <span>Add a photo — you in the lab works well</span>
-      </div>
-
       <div class="side-card">
         <h4>Education</h4>
         <div class="kv">
@@ -483,7 +457,7 @@ html{scroll-behavior:smooth}
 
   <div class="resume-top">
     <p>The full one-page version is available as a PDF, formatted for applications.</p>
-    <a class="btn primary" href="assets/resume.pdf" target="_blank" rel="noopener">Download PDF</a>
+    <a class="btn primary" href="Haoran_Ding_Resume.pdf" target="_blank" rel="noopener">Download PDF</a>
   </div>
 
   <!-- ---------- Research ---------- -->
@@ -747,7 +721,7 @@ html{scroll-behavior:smooth}
       </span>
     </div>
 
-    <a class="contact-card" href="assets/resume.pdf" target="_blank" rel="noopener">
+    <a class="contact-card" href="Haoran_Ding_Resume.pdf" target="_blank" rel="noopener">
       <span class="ic">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
           <path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"></path>
