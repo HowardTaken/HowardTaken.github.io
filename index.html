@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Haoran (Howard) Ding — electrical engineering student at UCLA. Terahertz quantum cascade laser research, embedded systems, and software projects.">
+<meta name="description" content="Haoran Ding — electrical engineering student at UCLA. Terahertz quantum cascade laser characterization, instrument automation, and embedded systems.">
 <meta name="author" content="Haoran Ding">
 <meta property="og:title" content="Haoran Ding — Electrical Engineering, UCLA">
-<meta property="og:description" content="Electrical engineering student at UCLA. Terahertz laser research, underwater robotics, and embedded systems.">
+<meta property="og:description" content="Terahertz quantum cascade laser characterization, instrument automation, and embedded systems.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231F5FA0'/%3E%3Ctext x='16' y='22' font-family='Helvetica,Arial,sans-serif' font-weight='bold' font-size='16' fill='white' text-anchor='middle'%3EHD%3C/text%3E%3C/svg%3E">
 <title>Haoran Ding</title>
@@ -299,6 +299,13 @@ footer.site-footer{
 footer.site-footer a{color:var(--text-3)}
 footer.site-footer a:hover{color:var(--link)}
 
+.result{
+  background:var(--bg-tint);border-left:3px solid var(--link);
+  padding:13px 17px;border-radius:0 4px 4px 0;margin-top:14px;
+  font-size:.94rem;color:var(--text-2);
+}
+.result strong{color:var(--text);font-weight:600}
+
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
@@ -310,7 +317,7 @@ html{scroll-behavior:smooth}
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="#home">
-      <span class="name">Haoran (Howard) Ding</span>
+      <span class="name">Haoran Ding</span>
       <span class="role">Electrical Engineering · UCLA</span>
     </a>
     <nav class="tabs">
@@ -339,16 +346,16 @@ html{scroll-behavior:smooth}
         <span>Add a headshot</span>
       </div>
       <div>
-        <h1>Haoran (Howard) Ding</h1>
+        <h1>Haoran Ding</h1>
         <p class="tagline">Electrical engineering student at UCLA</p>
         <div class="body">
-          <p>I'm a second-year electrical engineering student at UCLA, working on terahertz quantum cascade lasers in Professor Benjamin Williams' photonics lab. Most of my summer was spent characterizing a new laser design — running measurements in the lab and writing the MATLAB code to process the results.</p>
-          <p>Outside of research I build things: an autonomous underwater vehicle with UCLA's robotics team, embedded control projects, and software that uses language models. I like working on problems where the hardware and the software both matter.</p>
+          <p>I work in the Terahertz and Infrared Photonics Group at UCLA, where I characterize quantum cascade lasers and build the instrument automation that makes those measurements repeatable. This past summer I brought up a previously untested metal–metal waveguide device and established its bias tuning range and maximum operating temperature.</p>
+          <p>Outside the lab I design the chassis for an autonomous underwater vehicle, write embedded control firmware, and build software on top of language models. I like problems where the hardware and the software both have to work.</p>
         </div>
         <div class="btn-row">
           <a class="btn primary" href="#resume">View my resume</a>
           <a class="btn" href="#contact">Get in touch</a>
-          <a class="btn" href="#" data-todo>Download PDF</a>
+          <a class="btn" href="assets/resume.pdf" target="_blank" rel="noopener">Download PDF</a>
         </div>
       </div>
     </div>
@@ -358,14 +365,14 @@ html{scroll-behavior:smooth}
     <h2>What I'm working on</h2>
     <div class="highlights">
       <div class="hl">
-        <h3>Terahertz laser research</h3>
-        <p>Characterizing a novel active-region design for metal–metal waveguide quantum cascade lasers, and automating the measurement analysis.</p>
-        <p class="when">UCLA ECE · Summer 2026</p>
+        <h3>Terahertz laser characterization</h3>
+        <p>Automating the measurement bench for terahertz quantum cascade lasers, and characterizing new devices across bias and temperature.</p>
+        <p class="when">UCLA ECE · June 2026 – present</p>
       </div>
       <div class="hl">
         <h3>Underwater robotics</h3>
-        <p>Designing the chassis and thruster layout for an autonomous underwater vehicle with Bruin Underwater Robotics.</p>
-        <p class="when">UCLA ASME · 2025 – present</p>
+        <p>Designing the chassis frame geometry and thruster configuration for an autonomous underwater vehicle.</p>
+        <p class="when">Bruin Underwater Robotics · 2025 – present</p>
       </div>
       <div class="hl">
         <h3>AI evaluation</h3>
@@ -379,11 +386,11 @@ html{scroll-behavior:smooth}
     <div class="quick">
       <h3>Quick facts</h3>
       <ul>
-        <li>B.S. Electrical Engineering, UCLA Samueli School of Engineering — expected June 2028</li>
+        <li>B.S. Electrical Engineering, UCLA Samueli School of Engineering — expected May 2029</li>
         <li>GPA 3.9</li>
-        <li>Interested in photonics, semiconductor test, and embedded systems</li>
+        <li>Focused on photonics, semiconductor test and characterization, and embedded systems</li>
         <li>Looking for summer 2027 internships</li>
-        <li>Based in Los Angeles, CA</li>
+        <li>San Jose, CA · Los Angeles, CA during the school year</li>
       </ul>
     </div>
   </div>
@@ -401,15 +408,17 @@ html{scroll-behavior:smooth}
 
   <div class="bio-grid">
     <div class="prose">
-      <p>I'm <strong>Haoran Ding</strong> — most people call me Howard. I'm studying electrical engineering at UCLA, class of 2028.</p>
+      <p>I'm <strong>Haoran Ding</strong> — most people call me Howard. I'm studying electrical engineering at UCLA, class of 2029.</p>
 
       <p>I got into engineering through <strong>underwater robotics</strong>. In high school I led a MATE ROV team for three seasons, designing and building a remotely operated vehicle from scratch and piloting it at competition. We won first place overall at the 2023 Monterey Regional. What I took away from it wasn't really about ROVs — it was that the hardest part of building anything is getting separate subsystems to work together, and that someone has to own that.</p>
 
-      <p>At UCLA I've moved toward <strong>photonics and semiconductor devices</strong>. I spent this past summer in Professor Benjamin Williams' Terahertz Devices and Infrared Photonics Group as a SURP research fellow, characterizing a new active-region design for terahertz quantum cascade lasers. Day to day that meant mounting devices in a cryostat, running current and voltage sweeps, measuring emission spectra on an FTIR, and figuring out why a curve looked wrong. I also wrote the MATLAB tooling that turned the analysis from a manual process into something repeatable.</p>
+      <p>At UCLA I've moved toward <strong>photonics and semiconductor devices</strong>. I work in the Terahertz and Infrared Photonics Group, where terahertz quantum cascade lasers are among the only compact solid-state sources in a band that's otherwise hard to reach. My first project there was a device nobody had measured yet: mounting it in a cryostat, sweeping it across bias and temperature, and finding out where it lased and where it stopped.</p>
 
-      <p>That combination is what I keep gravitating toward: <strong>a physical device on the bench and the software that makes sense of it</strong>. A measurement is only as good as the pipeline behind it, and I'd rather own both ends than just one.</p>
+      <p>Most of my actual work, though, has been <strong>software for the bench</strong>. The lab's characterization workflow was split between LabVIEW and MATLAB and required reconfiguring instruments by hand between runs. I consolidated it into one MATLAB pipeline that drives the FTIR spectrometer, function generator, pulse generator and lock-in amplifier together, then built a GUI so other lab members can run a full characterization sequence without touching the source.</p>
 
-      <p>I'm also interested in how language models handle technical reasoning — I work part-time at Handshake AI reviewing model output in engineering and CS domains, and I've built a few projects on top of LLMs, including a financial research agent and a retrieval system over semiconductor physics papers.</p>
+      <p>That's the combination I keep coming back to: <strong>a physical device on the bench and the software that makes sense of it</strong>. A measurement is only as good as the pipeline behind it, and I'd rather own both ends than just one.</p>
+
+      <p>I'm also interested in how language models handle technical reasoning. I work part-time at Handshake AI reviewing model output in engineering and CS domains, and I've built a few things on top of LLMs — a financial research agent, and a retrieval system over semiconductor physics papers that I use for my own lab reading.</p>
 
       <p class="note">Add a paragraph here about something outside of engineering — how you spend your time, where you grew up, something you're into. It makes the page feel like a person rather than a resume.</p>
     </div>
@@ -430,7 +439,7 @@ html{scroll-behavior:smooth}
           <div>
             <div class="t">University of California, Los Angeles</div>
             <div>B.S. Electrical Engineering</div>
-            <div class="s">Samueli School of Engineering · GPA 3.9 · Expected June 2028</div>
+            <div class="s">Samueli School of Engineering · GPA 3.9 · Expected May 2029</div>
           </div>
         </div>
       </div>
@@ -474,7 +483,7 @@ html{scroll-behavior:smooth}
 
   <div class="resume-top">
     <p>The full one-page version is available as a PDF, formatted for applications.</p>
-    <a class="btn primary" href="#" data-todo>Download PDF</a>
+    <a class="btn primary" href="assets/resume.pdf" target="_blank" rel="noopener">Download PDF</a>
   </div>
 
   <!-- ---------- Research ---------- -->
@@ -484,21 +493,20 @@ html{scroll-behavior:smooth}
     <div class="entry">
       <div class="entry-head">
         <div>
-          <h3>Research Fellow, Summer Undergraduate Research Program</h3>
-          <p class="org">Terahertz Devices &amp; Infrared Photonics Group, UCLA ECE</p>
+          <h3>Research Fellow — Summer Undergraduate Research Program</h3>
+          <p class="org">Terahertz and Infrared Photonics Group, UCLA</p>
         </div>
-        <p class="date">June – August 2026</p>
+        <p class="date">June 2026 – present</p>
       </div>
       <ul>
-        <li>Characterized a novel active-region design for metal–metal waveguide terahertz quantum cascade lasers under Professor Benjamin Williams.</li>
-        <li>Ran pulsed and continuous-wave light–current–voltage measurements to extract threshold behavior and evaluate device power consumption.</li>
-        <li>Measured bias-dependent emission spectra on an FTIR spectrometer to resolve mode structure and how lasing frequency shifts with drive current.</li>
-        <li>Performed temperature-dependent sweeps in a cryostat to establish the maximum operating temperature of the devices.</li>
-        <li>Built MATLAB tooling to automate data acquisition and analysis, making repeat characterization runs faster and more consistent.</li>
-        <li>Presented the work in a 12-minute technical talk at the SURP symposium.</li>
+        <li>Developed a MATLAB instrument control suite interfacing the step-scan FTIR spectrometer, Keithley function generator, pulse generator, and lock-in amplifier, consolidating the lab's split LabVIEW/MATLAB workflow into one unified pipeline.</li>
+        <li>Automated the end-to-end characterization sequence, biasing the laser and recording optical output across pulsed and continuous-wave operation, eliminating manual instrument reconfiguration and improving repeatability.</li>
+        <li>Wrote analysis routines that ingest acquired datasets to generate L–I–V and emission spectra plots and extract threshold current density, slope efficiency, and characteristic temperature.</li>
+        <li>Engineered a MATLAB GUI allowing lab members to configure measurement parameters and run full automated characterization sequences without modifying source code.</li>
+        <li>Characterized a previously untested metal–metal waveguide terahertz quantum cascade laser.</li>
       </ul>
-      <p class="stack"><strong>Tools:</strong> MATLAB, FTIR spectrometer, cryostat, pulse generator, source meter</p>
-      <p class="note-block">Add measured results once your PI confirms what's okay to post publicly — threshold current density, emission frequency, max operating temperature, or how many devices you screened. Numbers make this section much stronger.</p>
+      <p class="result"><strong>Result:</strong> established <strong>2.45–2.61 THz</strong> bias tuning and a <strong>133 K</strong> maximum operating temperature on a device with no prior characterization data.</p>
+      <p class="stack"><strong>Tools:</strong> MATLAB, LabVIEW, step-scan FTIR spectrometer, cryostat, lock-in amplifier, function and pulse generators</p>
     </div>
 
     <div class="entry">
@@ -510,8 +518,8 @@ html{scroll-behavior:smooth}
         <p class="date">June – July 2024</p>
       </div>
       <ul>
-        <li>Prototyped bio-inspired snake-scale surfaces designed to reduce tribological friction, redesigning the interlocking mechanism to resolve 3D-printing tolerance failures.</li>
-        <li>Quantified prototype performance using MATLAB and motion-tracking software to extract displacement and velocity data across design iterations.</li>
+        <li>Engineered bio-inspired snake-scale prototypes to minimize tribological friction, iteratively redesigning interlocking mechanisms to resolve critical 3D-printing tolerance failures.</li>
+        <li>Quantified performance using MATLAB and motion-tracking software to extract displacement and velocity datasets, accelerating design iteration cycles.</li>
       </ul>
       <p class="stack"><strong>Tools:</strong> MATLAB, motion tracking, CAD, 3D printing</p>
     </div>
@@ -519,19 +527,19 @@ html{scroll-behavior:smooth}
 
   <!-- ---------- Work + leadership ---------- -->
   <div class="block">
-    <h2>Work &amp; engineering experience</h2>
+    <h2>Experience</h2>
 
     <div class="entry">
       <div class="entry-head">
         <div>
           <h3>AI Training Fellow</h3>
-          <p class="org">Handshake AI</p>
+          <p class="org">Handshake AI · Remote</p>
         </div>
         <p class="date">January 2026 – present</p>
       </div>
       <ul>
-        <li>Evaluate and refine frontier large language models through structured RLHF pipelines, focused on improving model reasoning quality.</li>
-        <li>Audit AI-generated technical solutions for logical consistency across engineering and computer science problems, providing calibrated feedback used in fine-tuning.</li>
+        <li>Evaluate and refine frontier large language models via structured Reinforcement Learning from Human Feedback (RLHF) pipelines, improving model reasoning quality and output accuracy.</li>
+        <li>Audit complex AI-generated technical solutions for logical consistency across engineering and CS domains, providing calibrated feedback that informs model fine-tuning.</li>
       </ul>
     </div>
 
@@ -544,8 +552,8 @@ html{scroll-behavior:smooth}
         <p class="date">September 2025 – present</p>
       </div>
       <ul>
-        <li>Design the autonomous underwater vehicle's chassis frame geometry and thruster configuration for hydrodynamic stability and structural integrity.</li>
-        <li>Work with the electrical subsystem team on component integration and system-level design reviews.</li>
+        <li>Architecting the Autonomous Underwater Vehicle (AUV) chassis frame geometry and optimizing thruster configurations for hydrodynamic stability.</li>
+        <li>Collaborating with the electrical subsystem team on component integration and system-level design reviews.</li>
       </ul>
       <p class="stack"><strong>Tools:</strong> Onshape, 3D printing, mechanical design</p>
     </div>
@@ -553,82 +561,62 @@ html{scroll-behavior:smooth}
     <div class="entry">
       <div class="entry-head">
         <div>
-          <h3>Team CEO — MATE ROV</h3>
-          <p class="org">Valley Christian High School</p>
+          <h3>Team CEO</h3>
+          <p class="org">MATE ROV — Valley Christian High School, San Jose</p>
         </div>
         <p class="date">September 2022 – May 2025</p>
       </div>
       <ul>
-        <li>Led a multidisciplinary team to design, build, and pilot a fully functional remotely operated vehicle across three competition seasons.</li>
-        <li>Owned mechanical design and CAD modeling in Onshape, iterating through 3D printing to reduce structural weight and drag.</li>
-        <li>Coordinated integration between the electrical and mechanical subsystems and led the team's technical presentation.</li>
-        <li>Won 1st place overall and 1st in Engineering &amp; Communication at the 2023 MATE ROV Monterey Regional.</li>
+        <li>Led a multidisciplinary team to design, build, and pilot a Remotely Operated Vehicle, achieving 1st place overall and 1st in Engineering &amp; Communication at the 2023 MATE ROV Monterey Regional.</li>
+        <li>Spearheaded CAD modeling of critical ROV components in Onshape, applying hydrodynamic principles and iterative 3D printing to optimize structural weight and drag.</li>
       </ul>
     </div>
   </div>
 
   <!-- ---------- Projects ---------- -->
   <div class="block">
-    <h2>Personal projects</h2>
+    <h2>Projects</h2>
 
     <div class="proj">
       <div class="entry-head">
-        <div><h3>MATLAB acquisition &amp; analysis pipeline</h3></div>
-        <p class="date">2026</p>
-      </div>
-      <p class="desc">Custom MATLAB tooling built for the QCL characterization bench. It drives the lab's diagnostic instruments, ingests raw sweep data, and produces plots directly — replacing a manual analysis loop that took hours per device.</p>
-      <ul>
-        <li>Scripted instrument control so a full bias sweep runs unattended instead of being stepped by hand.</li>
-        <li>Parses raw instrument output into a consistent format, handling variation in file naming and headers between runs.</li>
-        <li>Extracts threshold current, slope efficiency, and peak power with the same algorithm every time, so device-to-device comparisons are actually valid.</li>
-        <li>Generates publication-ready LIV families and spectral overlays with no manual formatting step.</li>
-      </ul>
-      <p class="stack"><strong>Built with:</strong> MATLAB, instrument control, signal processing, curve fitting</p>
-    </div>
-
-    <div class="proj">
-      <div class="entry-head">
-        <div><h3>Autonomous line-following robot</h3></div>
-        <p class="date">May 2026</p>
-      </div>
-      <p class="desc">A real-time closed-loop PID controller running on an Arduino, tuned to hold a line across surfaces with different contrast — not just one demo track.</p>
-      <ul>
-        <li>Implemented full PID rather than proportional-only control: the integral term removes steady-state offset on long curves, and the derivative term damps the oscillation the integral introduces.</li>
-        <li>Found gain coefficients through systematic empirical testing, checking each against both error magnitude and settling behavior at high traverse speed.</li>
-        <li>Integrated an IR reflectance sensor array with motor driver circuitry, closing the loop from sensor reading to differential drive.</li>
-      </ul>
-      <p class="stack"><strong>Built with:</strong> C++, Arduino, IR sensor array, motor drivers</p>
-      <a class="repo-link" href="https://github.com/HowardTaken/ece3-pid-line-follower" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-4 1.2-4-2.2-5.5-2.8M15 21v-3.3c0-1 .1-1.4-.5-2 2.6-.3 5-1.3 5-5.5a4.3 4.3 0 00-1.2-3 4 4 0 00-.1-3s-1-.3-3.2 1.2a11 11 0 00-5.8 0C6.9 3 5.9 3.3 5.9 3.3a4 4 0 00-.1 3 4.3 4.3 0 00-1.2 3c0 4.2 2.4 5.2 5 5.5-.6.6-.6 1.2-.5 2V21"></path></svg> View on GitHub</a>
-    </div>
-
-    <div class="proj">
-      <div class="entry-head">
-        <div><h3>AI-powered market analyst agent</h3></div>
+        <div><h3>AI-Powered Market Analyst Agent</h3></div>
         <p class="date">2026</p>
       </div>
       <p class="desc">A Python pipeline that combines structured financial time-series with unstructured regulatory filings into a single context payload, then orchestrates a language model to produce a structured investment memo in seconds instead of hours.</p>
       <ul>
-        <li>Pulls data from multiple sources — Financial Modeling Prep and yfinance for time-series, SEC EDGAR and BeautifulSoup for filings.</li>
-        <li>Handles domain edge cases, including bypassing DCF modeling for banking institutions where the standard free-cash-flow approach doesn't apply.</li>
-        <li>Builds prompts programmatically per target rather than filling a static template.</li>
-        <li>Returns memos in a fixed schema covering valuation, competitive risk, and forward-looking analysis.</li>
+        <li>Architected a multi-source financial intelligence pipeline using the Gemini and Financial Modeling Prep APIs, handling edge-case logic to correctly bypass DCF modeling for banking institutions.</li>
+        <li>Reduced investment memo generation from hours of manual research to seconds via an end-to-end LLM orchestration workflow producing structured valuation and risk analysis.</li>
       </ul>
-      <p class="stack"><strong>Built with:</strong> Python, Gemini API, Financial Modeling Prep API, BeautifulSoup, yfinance</p>
+      <p class="stack"><strong>Built with:</strong> Python, Gemini API, Financial Modeling Prep API</p>
       <a class="repo-link" href="https://github.com/HowardTaken/AI-Financial-Analyst" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-4 1.2-4-2.2-5.5-2.8M15 21v-3.3c0-1 .1-1.4-.5-2 2.6-.3 5-1.3 5-5.5a4.3 4.3 0 00-1.2-3 4 4 0 00-.1-3s-1-.3-3.2 1.2a11 11 0 00-5.8 0C6.9 3 5.9 3.3 5.9 3.3a4 4 0 00-.1 3 4.3 4.3 0 00-1.2 3c0 4.2 2.4 5.2 5 5.5-.6.6-.6 1.2-.5 2V21"></path></svg> View on GitHub</a>
     </div>
 
     <div class="proj">
       <div class="entry-head">
-        <div><h3>Quantum RAG assistant</h3></div>
+        <div><h3>Quantum RAG Assistant</h3></div>
         <p class="date">2026</p>
       </div>
-      <p class="desc">A retrieval-augmented generation assistant that ingests, parses, and queries semiconductor physics papers, built to speed up literature review for lab work.</p>
+      <p class="desc">A retrieval-augmented generation assistant that ingests, parses, and queries complex semiconductor physics research papers, built to speed up literature review for lab work.</p>
       <ul>
-        <li>Chunks and embeds research papers into a ChromaDB vector store for semantic search.</li>
+        <li>Chunks and embeds research papers into a ChromaDB vector store for semantic search over a domain where keyword search performs poorly.</li>
         <li>Returns answers grounded in retrieved passages rather than model recall alone.</li>
       </ul>
       <p class="stack"><strong>Built with:</strong> Python, ChromaDB, LLM integration</p>
       <a class="repo-link" href="https://github.com/HowardTaken/quantum-rag-assistant" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-4 1.2-4-2.2-5.5-2.8M15 21v-3.3c0-1 .1-1.4-.5-2 2.6-.3 5-1.3 5-5.5a4.3 4.3 0 00-1.2-3 4 4 0 00-.1-3s-1-.3-3.2 1.2a11 11 0 00-5.8 0C6.9 3 5.9 3.3 5.9 3.3a4 4 0 00-.1 3 4.3 4.3 0 00-1.2 3c0 4.2 2.4 5.2 5 5.5-.6.6-.6 1.2-.5 2V21"></path></svg> View on GitHub</a>
+    </div>
+
+    <div class="proj">
+      <div class="entry-head">
+        <div><h3>Autonomous Line-Following Robot</h3></div>
+        <p class="date">May 2026</p>
+      </div>
+      <p class="desc">A real-time closed-loop PID controller running on an Arduino, tuned to hold a line across surfaces with different contrast — not just one demo track.</p>
+      <ul>
+        <li>Implemented a real-time closed-loop PID control algorithm on an Arduino microcontroller, integrating IR sensor arrays with motor driver circuitry.</li>
+        <li>Tuned gain coefficients empirically to eliminate steady-state tracking error across variable-contrast surfaces and suppress oscillation at high traverse speed.</li>
+      </ul>
+      <p class="stack"><strong>Built with:</strong> C++, Arduino, PID control</p>
+      <a class="repo-link" href="https://github.com/HowardTaken/ece3-pid-line-follower" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-4 1.2-4-2.2-5.5-2.8M15 21v-3.3c0-1 .1-1.4-.5-2 2.6-.3 5-1.3 5-5.5a4.3 4.3 0 00-1.2-3 4 4 0 00-.1-3s-1-.3-3.2 1.2a11 11 0 00-5.8 0C6.9 3 5.9 3.3 5.9 3.3a4 4 0 00-.1 3 4.3 4.3 0 00-1.2 3c0 4.2 2.4 5.2 5 5.5-.6.6-.6 1.2-.5 2V21"></path></svg> View on GitHub</a>
     </div>
   </div>
 
@@ -638,23 +626,19 @@ html{scroll-behavior:smooth}
     <div class="skills-table">
       <div class="row">
         <div class="k">Languages</div>
-        <div class="v">Python, C++, C, MATLAB, Java</div>
+        <div class="v">MATLAB, Python, C++, C, Java</div>
       </div>
       <div class="row">
-        <div class="k">Lab &amp; instrumentation</div>
-        <div class="v">FTIR spectrometer, cryostat, pulse generator, source meter, oscilloscope <span class="note">confirm this list</span></div>
+        <div class="k">Instrumentation</div>
+        <div class="v">Instrument control &amp; automation, FTIR spectroscopy, lock-in amplifiers, function and pulse generators, cryostats, LabVIEW, MATLAB GUI development</div>
       </div>
       <div class="row">
-        <div class="k">Hardware &amp; embedded</div>
-        <div class="v">Arduino, STM32, PCB design, soldering, circuit analysis, system integration</div>
+        <div class="k">AI &amp; software</div>
+        <div class="v">Gemini API, REST APIs, RAG, ChromaDB, LLM prompt engineering, RLHF</div>
       </div>
       <div class="row">
-        <div class="k">AI &amp; data</div>
-        <div class="v">RLHF, RAG, Gemini API, ChromaDB, BeautifulSoup, SEC EDGAR extraction, yfinance, REST API integration</div>
-      </div>
-      <div class="row">
-        <div class="k">Design &amp; prototyping</div>
-        <div class="v">Onshape (CAD), 3D printing, rapid prototyping</div>
+        <div class="k">Hardware &amp; design</div>
+        <div class="v">Arduino, STM32, PCB design, circuit analysis, soldering, Onshape (CAD), 3D printing</div>
       </div>
     </div>
   </div>
@@ -668,7 +652,7 @@ html{scroll-behavior:smooth}
           <h3>University of California, Los Angeles</h3>
           <p class="org">B.S. Electrical Engineering · Samueli School of Engineering</p>
         </div>
-        <p class="date">Expected June 2028</p>
+        <p class="date">Expected May 2029</p>
       </div>
       <ul>
         <li>GPA 3.9</li>
@@ -725,7 +709,7 @@ html{scroll-behavior:smooth}
       </span>
     </a>
 
-    <a class="contact-card" href="#" data-todo>
+    <a class="contact-card" href="https://www.linkedin.com/in/haoran-ding-518930387" target="_blank" rel="noopener">
       <span class="ic">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
           <rect x="3" y="3" width="18" height="18" rx="2"></rect>
@@ -734,7 +718,7 @@ html{scroll-behavior:smooth}
       </span>
       <span>
         <span class="t">LinkedIn</span><br>
-        <span class="v">Add your profile URL</span>
+        <span class="v">haoran-ding-518930387</span>
       </span>
     </a>
 
@@ -759,11 +743,11 @@ html{scroll-behavior:smooth}
       </span>
       <span>
         <span class="t">Location</span><br>
-        <span class="v">Los Angeles, California</span>
+        <span class="v">San Jose, CA — Los Angeles during the school year</span>
       </span>
     </div>
 
-    <a class="contact-card" href="#" data-todo>
+    <a class="contact-card" href="assets/resume.pdf" target="_blank" rel="noopener">
       <span class="ic">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
           <path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"></path>
@@ -785,6 +769,7 @@ html{scroll-behavior:smooth}
       <li>Photonics and optoelectronic device engineering</li>
       <li>Semiconductor test, characterization, and validation</li>
       <li>Embedded systems and control</li>
+      <li>Test and measurement automation</li>
     </ul>
     <p style="margin-top:14px">If you're hiring for something along those lines, or just want to talk about terahertz devices, send me an email.</p>
   </div>
@@ -796,7 +781,7 @@ html{scroll-behavior:smooth}
 <footer class="site-footer">
   <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;width:100%;padding:0 24px">
     <span>© 2026 Haoran Ding</span>
-    <span>Last updated <span class="note">September 2026</span></span>
+    <span>Last updated September 2026</span>
   </div>
 </footer>
 
@@ -828,12 +813,6 @@ html{scroll-behavior:smooth}
   }
 
   window.addEventListener("hashchange", function(){ route(true); });
-
-  /* placeholder links do nothing until the real URLs are added */
-  document.querySelectorAll("[data-todo]").forEach(function(a){
-    a.addEventListener("click", function(e){ e.preventDefault(); });
-    a.title = "Placeholder — add the real link";
-  });
 
   route(false);
 })();
