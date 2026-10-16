@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="description" content="Haoran (Howard) Ding — Electrical Engineering at UCLA. Terahertz quantum cascade laser characterization, test and measurement automation, embedded control, and applied AI.">
+<meta name="description" content="Haoran (Howard) Ding — Electrical Engineering at UCLA. Terahertz quantum cascade laser characterization, test and measurement automation, power electronics, and applied AI.">
 <meta name="author" content="Haoran (Howard) Ding">
 <meta property="og:title" content="Haoran (Howard) Ding">
 <meta property="og:description" content="Electrical Engineering at UCLA. I characterize terahertz lasers and build the software and instrumentation that measure them.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://howardtaken.github.io/">
 <link rel="canonical" href="https://howardtaken.github.io/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231D1D1F'/%3E%3Ctext x='16' y='22' font-family='Helvetica,Arial,sans-serif' font-weight='600' font-size='15' letter-spacing='-0.5' fill='white' text-anchor='middle'%3EHD%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B1020'/%3E%3Cpath d='M4 16 C7 16 8 9 10 9 S13 23 16 23 S19 9 22 9 S25 16 28 16' fill='none' stroke='%2367E8F9' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
 <title>Haoran (Howard) Ding</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
 
 <script type="application/ld+json">
 {
@@ -34,7 +34,7 @@
 
 <style>
 /* ==================================================================
-   Tokens — committed light palette
+   Tokens — committed light palette, dark accent for the banner
    ================================================================== */
 :root{
   --bg:#FFFFFF;
@@ -47,6 +47,11 @@
   --blue:#0071E3;
   --blue-dark:#0058B9;
   --link:#0066CC;
+  --night:#0B1020;
+  --cyan:#67E8F9;
+  --violet:#A78BFA;
+  --green:#22C55E;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
 
 *{box-sizing:border-box}
@@ -84,36 +89,36 @@ a:hover{text-decoration:underline}
 .tiny{font-size:.82rem;color:var(--ink-3)}
 
 /* ==================================================================
-   Nav — slim, translucent, blurred
+   Nav — centered floating pill
    ================================================================== */
 .nav{
-  position:sticky;top:0;z-index:60;
-  background:rgba(255,255,255,.72);
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:flex;justify-content:center;
+  padding:12px 16px;
+  pointer-events:none;
+}
+.nav ul{
+  pointer-events:auto;
+  display:flex;gap:2px;list-style:none;margin:0;padding:5px;
+  background:rgba(255,255,255,.78);
   backdrop-filter:saturate(180%) blur(20px);
   -webkit-backdrop-filter:saturate(180%) blur(20px);
-  border-bottom:1px solid var(--hair-soft);
+  border:1px solid var(--hair-soft);border-radius:980px;
+  box-shadow:0 6px 24px rgba(11,16,32,.08);
+  max-width:100%;overflow-x:auto;scrollbar-width:none;
 }
-.nav-inner{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:24px;height:52px;
-}
-.nav .mark{
-  font-size:.93rem;font-weight:700;letter-spacing:-.015em;color:var(--ink);
-}
-.nav .mark:hover{text-decoration:none}
-.nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+.nav ul::-webkit-scrollbar{display:none}
 .nav ul a{
-  display:block;padding:6px 13px;border-radius:980px;
-  font-size:.83rem;font-weight:500;letter-spacing:-.005em;
+  display:block;padding:7px 15px;border-radius:980px;white-space:nowrap;
+  font-size:.85rem;font-weight:500;letter-spacing:-.005em;
   color:var(--ink-2);transition:color .2s,background .2s;
 }
 .nav ul a:hover{color:var(--ink);text-decoration:none;background:var(--soft)}
-.nav ul a.active{color:var(--ink);font-weight:600;background:var(--soft)}
-@media(max-width:680px){
-  .nav-inner{height:auto;padding-top:10px;padding-bottom:10px;flex-direction:column;align-items:flex-start;gap:8px}
-  .nav ul{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:2px}
-  .nav ul a{white-space:nowrap;padding:6px 11px}
-}
+.nav ul a.active{color:#fff;font-weight:600;background:var(--ink)}
+@media(max-width:420px){.nav ul a{padding:7px 11px;font-size:.82rem}}
+
+/* Nav floats over the banner on home; other pages reserve room for it */
+body:not(.on-home) main{padding-top:64px}
 
 /* ==================================================================
    Pages
@@ -121,10 +126,9 @@ a:hover{text-decoration:underline}
 .page{display:none}
 .page.active{display:block}
 
-.hero{padding:96px 0 0}
-.page-head{padding:88px 0 0}
+.page-head{padding:72px 0 0}
 .page-head p{margin-top:14px;font-size:1.15rem;color:var(--ink-2);max-width:56ch}
-@media(max-width:640px){.hero{padding:56px 0 0}.page-head{padding:52px 0 0}}
+@media(max-width:640px){.page-head{padding:44px 0 0}}
 
 section{padding:76px 0 0}
 .sec-head{margin-bottom:34px}
@@ -133,6 +137,100 @@ section{padding:76px 0 0}
   font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
   color:var(--ink-3);margin-bottom:8px;
 }
+
+/* ==================================================================
+   Banner — animated terahertz wave field
+   ================================================================== */
+.banner{
+  position:relative;height:340px;overflow:hidden;
+  background:
+    radial-gradient(60% 90% at 18% 20%, rgba(56,104,255,.35), transparent 70%),
+    radial-gradient(50% 80% at 85% 70%, rgba(167,139,250,.30), transparent 70%),
+    radial-gradient(40% 60% at 60% 10%, rgba(103,232,249,.18), transparent 70%),
+    var(--night);
+}
+.banner::before{
+  /* faint dot grid */
+  content:"";position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.14) 1px, transparent 1.2px);
+  background-size:22px 22px;
+  -webkit-mask-image:linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent);
+          mask-image:linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent);
+}
+.banner::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:70px;
+  background:linear-gradient(180deg, rgba(11,16,32,0), rgba(11,16,32,.35));
+}
+.banner canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.readout{
+  position:absolute;right:32px;bottom:22px;z-index:2;
+  font-family:var(--mono);font-size:.72rem;line-height:1.7;
+  color:rgba(255,255,255,.62);text-align:right;letter-spacing:.02em;
+}
+.readout b{color:var(--cyan);font-weight:500}
+.banner .wrap{position:relative;height:100%}
+@media(max-width:640px){.banner{height:240px}.readout{right:20px;bottom:auto;top:76px;font-size:.66rem}}
+
+/* ==================================================================
+   Hero
+   ================================================================== */
+.hero{position:relative;z-index:3}
+.hero-top{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+.avatar{
+  position:relative;width:176px;height:176px;margin-top:-96px;border-radius:50%;
+  background:#fff;
+  box-shadow:0 18px 50px rgba(11,16,32,.22);
+}
+.avatar .ring{
+  position:absolute;inset:0;border-radius:50%;
+  background:conic-gradient(from 0deg, var(--cyan), #3B82F6, var(--violet), #F0ABFC, var(--cyan));
+  animation:spin 9s linear infinite;
+}
+.avatar .scope{
+  position:absolute;inset:5px;border-radius:50%;overflow:hidden;
+  background:radial-gradient(circle at 50% 40%, #16204A, var(--night) 72%);
+  border:3px solid #fff;
+}
+.avatar canvas,.avatar img{width:100%;height:100%;display:block;object-fit:cover}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:640px){.avatar{width:132px;height:132px;margin-top:-70px}}
+
+.status{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:7px 14px;border-radius:980px;
+  background:var(--soft);border:1px solid var(--hair-soft);
+  font-size:.83rem;font-weight:600;color:var(--ink);
+}
+.status .dot{position:relative;width:8px;height:8px;border-radius:50%;background:var(--green)}
+.status .dot::after{
+  content:"";position:absolute;inset:0;border-radius:50%;background:var(--green);
+  animation:ping 1.8s cubic-bezier(0,0,.2,1) infinite;
+}
+@keyframes ping{75%,100%{transform:scale(2.6);opacity:0}}
+
+.hero h1{margin-top:28px}
+.hero .tagline{
+  font-size:clamp(1.15rem,2.4vw,1.42rem);font-weight:500;
+  color:var(--ink-2);letter-spacing:-.014em;margin-top:14px;max-width:44ch;
+}
+.hero .tagline em{
+  font-style:normal;
+  background:linear-gradient(90deg,#2563EB,#7C3AED);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero .status-row{margin-top:22px}
+.hero .body{margin-top:26px;display:flex;flex-direction:column;gap:16px;max-width:66ch}
+.hero .body p{color:var(--ink-2);font-size:1.03rem}
+
+.socials{display:flex;gap:8px}
+.socials a{
+  width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--ink-2);border:1px solid var(--hair-soft);
+  transition:color .2s,border-color .2s,transform .2s,background .2s;
+}
+.socials a:hover{color:var(--ink);border-color:var(--hair);background:var(--soft);transform:translateY(-2px);text-decoration:none}
 
 /* ==================================================================
    Buttons
@@ -158,29 +256,8 @@ section{padding:76px 0 0}
 .chev::after{content:" ›";font-weight:400}
 
 /* ==================================================================
-   Home
+   Home blocks
    ================================================================== */
-.intro{display:grid;grid-template-columns:150px 1fr;gap:44px;align-items:start}
-@media(max-width:720px){.intro{grid-template-columns:1fr;gap:28px}}
-
-.avatar{
-  width:150px;height:150px;border-radius:50%;
-  background:var(--soft);color:var(--ink);
-  display:flex;align-items:center;justify-content:center;
-  font-size:2.6rem;font-weight:600;letter-spacing:-.03em;
-  overflow:hidden;user-select:none;
-}
-img.avatar{object-fit:cover}
-@media(max-width:720px){.avatar{width:112px;height:112px;font-size:2rem}}
-
-.intro .tagline{
-  font-size:clamp(1.15rem,2.4vw,1.4rem);font-weight:500;
-  color:var(--ink-2);letter-spacing:-.014em;margin-top:14px;
-}
-.intro .body{margin-top:26px;display:flex;flex-direction:column;gap:16px;max-width:62ch}
-.intro .body p{color:var(--ink-2);font-size:1.03rem}
-
-/* three-up, borderless */
 .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
 @media(max-width:800px){.trio{grid-template-columns:1fr}}
 .trio .item{
@@ -196,23 +273,34 @@ img.avatar{object-fit:cover}
 .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 @media(max-width:720px){.cards{grid-template-columns:1fr}}
 .card{
-  display:flex;flex-direction:column;gap:10px;
-  background:var(--soft);border-radius:18px;padding:28px 30px;
-  color:var(--ink);transition:background .2s,transform .2s;
+  position:relative;display:flex;flex-direction:column;gap:10px;
+  background:var(--soft);border:1px solid transparent;border-radius:18px;padding:28px 30px;
+  color:var(--ink);transition:background .25s,transform .25s,box-shadow .25s,border-color .25s;
 }
-.card:hover{text-decoration:none;background:#EDEDF0}
+.card:hover{
+  text-decoration:none;background:#fff;border-color:var(--hair-soft);
+  transform:translateY(-3px);box-shadow:0 14px 40px rgba(11,16,32,.10);
+}
 .card .eyebrow{margin:0}
 .card p{font-size:.95rem;color:var(--ink-2)}
 .card .chev{margin-top:auto;padding-top:6px}
 
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{
+  font-family:var(--mono);font-size:.72rem;color:var(--ink-2);
+  padding:3px 9px;border-radius:6px;background:#fff;border:1px solid var(--hair-soft);
+}
+.entry .chips{margin:4px 0 16px}
+.entry .chips span{background:var(--soft)}
+
 /* metric strip */
 .metrics{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+  display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:24px;
   padding:28px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair-soft);
 }
 @media(max-width:760px){.metrics{grid-template-columns:repeat(2,1fr)}}
 .metrics .n{
-  font-size:clamp(1.6rem,3.6vw,2.2rem);font-weight:700;letter-spacing:-.03em;line-height:1.05;
+  font-size:clamp(1.5rem,3.4vw,2.15rem);font-weight:700;letter-spacing:-.03em;line-height:1.05;
   font-variant-numeric:tabular-nums;
 }
 .metrics .l{font-size:.85rem;color:var(--ink-3);margin-top:8px}
@@ -313,12 +401,20 @@ img.avatar{object-fit:cover}
 }
 .flow li::before{
   content:counter(step,decimal-leading-zero);
-  display:block;font-size:.75rem;font-weight:700;letter-spacing:.06em;color:var(--blue);margin-bottom:8px;
+  display:block;font-family:var(--mono);font-size:.75rem;font-weight:500;letter-spacing:.06em;color:var(--blue);margin-bottom:8px;
 }
 .flow .ft{font-weight:600;font-size:.95rem;color:var(--ink);line-height:1.3}
 .flow .fd{font-size:.86rem;color:var(--ink-2);margin-top:6px;line-height:1.5}
 
 .figcap{font-size:.85rem;color:var(--ink-3);margin-top:4px}
+
+/* instrument driver grid */
+.drivers{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(max-width:640px){.drivers{grid-template-columns:1fr}}
+.drivers div div{border:0;padding:0}
+.drivers > div{border:1px solid var(--hair-soft);border-radius:12px;padding:14px 16px}
+.drivers .m{font-family:var(--mono);font-size:.82rem;color:var(--blue)}
+.drivers .r{font-size:.93rem;color:var(--ink);font-weight:600;margin-top:3px}
 
 /* ==================================================================
    Resume
@@ -366,9 +462,9 @@ img.avatar{object-fit:cover}
   padding:18px 0;border-top:1px solid var(--hair-soft);
 }
 .skills .row:first-child{border-top:1px solid var(--hair)}
-@media(max-width:640px){.skills .row{grid-template-columns:1fr;gap:6px}}
+@media(max-width:640px){.skills .row{grid-template-columns:1fr;gap:10px}}
 .skills .k{font-size:.97rem;font-weight:600;color:var(--ink)}
-.skills .v{font-size:.97rem;color:var(--ink-2)}
+.skills .chips span{font-size:.78rem;padding:4px 10px;background:var(--soft)}
 
 .awards{list-style:none;padding:0;display:flex;flex-direction:column}
 .awards li{
@@ -414,22 +510,21 @@ footer{
   html{scroll-behavior:auto}
   .rise,.rise.in{opacity:1;transform:none;transition:none}
   .btn:active{transform:none}
+  .avatar .ring,.status .dot::after{animation:none}
+  .card:hover,.socials a:hover{transform:none}
 }
 </style>
 </head>
-<body>
+<body class="on-home">
 
 <nav class="nav" aria-label="Primary">
-  <div class="wrap nav-inner">
-    <a class="mark" href="#home">Haoran (Howard) Ding</a>
-    <ul>
-      <li><a href="#home" data-tab="home">Home</a></li>
-      <li><a href="#about" data-tab="about">About</a></li>
-      <li><a href="#projects" data-tab="projects">Projects</a></li>
-      <li><a href="#resume" data-tab="resume">Resume</a></li>
-      <li><a href="#contact" data-tab="contact">Contact</a></li>
-    </ul>
-  </div>
+  <ul>
+    <li><a href="#home" data-tab="home">Home</a></li>
+    <li><a href="#about" data-tab="about">About</a></li>
+    <li><a href="#projects" data-tab="projects">Projects</a></li>
+    <li><a href="#resume" data-tab="resume">Resume</a></li>
+    <li><a href="#contact" data-tab="contact">Contact</a></li>
+  </ul>
 </nav>
 
 <main>
@@ -438,33 +533,57 @@ footer{
      HOME
      ================================================================== -->
 <div class="page active" id="page-home">
+
+  <header class="banner" aria-hidden="true">
+    <canvas id="wave-field"></canvas>
+    <div class="wrap">
+      <div class="readout">
+        QCL · metal–metal waveguide<br>
+        f = <b>2.45–2.61 THz</b> · T<sub>max</sub> = <b>133 K</b>
+      </div>
+    </div>
+  </header>
+
   <div class="wrap">
 
     <div class="hero">
-      <div class="intro">
-        <div class="avatar" aria-hidden="true">HD</div>
-        <div>
-          <h1>Haoran (Howard) Ding</h1>
-          <p class="tagline">Electrical Engineering at UCLA. I characterize terahertz lasers and build the software and instrumentation that measure them.</p>
-          <div class="body">
-            <p>I am a Research Fellow in UCLA's Terahertz and Infrared Photonics Group through the Summer Undergraduate Research Program. There I independently brought up a previously untested metal–metal waveguide terahertz quantum cascade laser and established its full operating envelope: a 2.45–2.61&nbsp;THz bias tuning range and a 133&nbsp;K maximum operating temperature.</p>
-            <p>Much of that work was in software. I replaced the lab's manual, LabVIEW-based test configuration with a MATLAB automation suite that sequences the FTIR spectrometer, function generator, and lock-in amplifier over GPIB, along with analysis scripts and a GUI the rest of the group now uses. Outside the lab, I contribute to the mechanical design of an autonomous underwater vehicle, build full-stack AI applications, and evaluate frontier language models for technical reasoning.</p>
-          </div>
-          <div class="actions">
-            <a class="btn" href="#projects">Explore my work</a>
-            <a class="btn ghost" href="Haoran_Ding_Resume.pdf" target="_blank" rel="noopener">Download resume (PDF)</a>
-            <a class="chev" href="#contact">Get in touch</a>
-          </div>
+      <div class="hero-top">
+        <div class="avatar" role="img" aria-label="Profile image: an oscilloscope trace of a terahertz wave packet">
+          <span class="ring"></span>
+          <span class="scope">
+            <!-- To use a photo instead, replace the canvas below with:
+                 <img src="profile.jpg" alt="Haoran Ding"> -->
+            <canvas id="scope"></canvas>
+          </span>
         </div>
+        <div class="socials">
+          <a href="https://github.com/HowardTaken" target="_blank" rel="noopener" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 19c-4 1.2-4-2.2-5.5-2.8M15 21v-3.3c0-1 .1-1.4-.5-2 2.6-.3 5-1.3 5-5.5a4.3 4.3 0 00-1.2-3 4 4 0 00-.1-3s-1-.3-3.2 1.2a11 11 0 00-5.8 0C6.9 3 5.9 3.3 5.9 3.3a4 4 0 00-.1 3 4.3 4.3 0 00-1.2 3c0 4.2 2.4 5.2 5 5.5-.6.6-.6 1.2-.5 2V21"></path></svg></a>
+          <a href="https://www.linkedin.com/in/haoran-ding-518930387" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"></rect><path d="M7 10.5V17M7 7.2v.1M11.5 17v-3.6c0-1.4.9-2.4 2.2-2.4s2.3.9 2.3 2.5V17"></path></svg></a>
+          <a href="mailto:howardding@ucla.edu" aria-label="Email"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"></rect><path d="M3 6.5l9 6.5 9-6.5"></path></svg></a>
+        </div>
+      </div>
+
+      <h1>Haoran (Howard) Ding</h1>
+      <p class="tagline">Electrical Engineering at UCLA. I characterize <em>terahertz lasers</em> and build the software and instrumentation that measure them.</p>
+      <div class="status-row"><span class="status"><span class="dot"></span>Open to Summer 2027 internships</span></div>
+
+      <div class="body">
+        <p>I am a Research Fellow in UCLA's Terahertz and Infrared Photonics Group through the Summer Undergraduate Research Program. There I independently brought up a previously untested metal–metal waveguide terahertz quantum cascade laser and established its full operating envelope: a 2.45–2.61&nbsp;THz bias tuning range and a 133&nbsp;K maximum operating temperature.</p>
+        <p>Much of that work was in software. I replaced the lab's manual LabVIEW test configuration with a MATLAB automation suite built on modular instrument drivers, along with analysis scripts and a GUI the rest of the group now uses. Outside the lab, I'm designing a buck converter for an autonomous underwater vehicle's battery management board, building full-stack AI applications, and evaluating frontier language models for technical reasoning.</p>
+      </div>
+      <div class="actions">
+        <a class="btn" href="#projects">Explore my work</a>
+        <a class="btn ghost" href="Haoran_Ding_Resume.pdf" target="_blank" rel="noopener">Download resume (PDF)</a>
+        <a class="chev" href="#contact">Get in touch</a>
       </div>
     </div>
 
     <section>
       <div class="metrics rise">
         <div><div class="n">2.45–2.61 THz</div><div class="l">Laser bias tuning range established</div></div>
-        <div><div class="n">133 K</div><div class="l">Maximum operating temperature measured</div></div>
+        <div><div class="n">133 K</div><div class="l">Maximum operating temperature</div></div>
+        <div><div class="n">149</div><div class="l">Automated tests in the Market Analyst app</div></div>
         <div><div class="n">1st Overall</div><div class="l">MATE ROV Monterey Regional, 2023</div></div>
-        <div><div class="n">3.74</div><div class="l">GPA, UCLA Electrical Engineering</div></div>
       </div>
     </section>
 
@@ -479,8 +598,8 @@ footer{
           <p class="tiny when">UCLA SURP · June 2026 – present</p>
         </div>
         <div class="item rise">
-          <h3>Underwater robotics</h3>
-          <p>Contributing to the chassis frame architecture and thruster configuration of an autonomous underwater vehicle.</p>
+          <h3>AUV power electronics</h3>
+          <p>Designing a buck converter to replace the LDO on the battery management board's 14.4&nbsp;V → 9&nbsp;V rail, improving conversion and thermal efficiency.</p>
           <p class="tiny when">Bruin Underwater Robotics · Sept 2025 – present</p>
         </div>
         <div class="item rise">
@@ -500,25 +619,29 @@ footer{
         <a class="card rise" href="#projects/thz-qcl">
           <p class="eyebrow">Research · Photonics</p>
           <h3>Terahertz QCL bring-up and test automation</h3>
-          <p>A MATLAB/GPIB automation suite, analysis pipeline, and GUI used to characterize a previously untested terahertz laser.</p>
+          <p>Modular instrument drivers, an automated MATLAB test suite, and a GUI used to characterize a previously untested terahertz laser.</p>
+          <div class="chips"><span>MATLAB</span><span>GPIB</span><span>SCPI</span><span>FTIR</span></div>
           <span class="chev">Read the case study</span>
         </a>
         <a class="card rise" href="#projects/quantum-rag">
           <p class="eyebrow">Full-stack · AI</p>
           <h3>Quantum RAG Assistant</h3>
-          <p>A LangGraph agent that answers questions about semiconductor physics papers with cited sources, deployed as a React/TypeScript web app.</p>
+          <p>A LangGraph agent over THz photonics papers that re-retrieves until its answers are grounded, then cites the source PDF pages.</p>
+          <div class="chips"><span>LangGraph</span><span>ChromaDB</span><span>FastAPI</span><span>React</span></div>
           <span class="chev">Read the case study</span>
         </a>
         <a class="card rise" href="#projects/market-analyst">
-          <p class="eyebrow">Python · AI</p>
+          <p class="eyebrow">Full-stack · AI</p>
           <h3>AI-Powered Market Analyst Agent</h3>
-          <p>An end-to-end pipeline that turns raw financial data into a structured investment memo in seconds.</p>
+          <p>A Gemini agent that researches a public company and writes a schema-validated Buy/Hold/Sell memo in 1–3 minutes.</p>
+          <div class="chips"><span>Gemini</span><span>FastAPI</span><span>SSE</span><span>TypeScript</span></div>
           <span class="chev">Read the case study</span>
         </a>
         <a class="card rise" href="#projects/line-follower">
           <p class="eyebrow">Embedded · Controls</p>
           <h3>Autonomous Line-Following Robot</h3>
-          <p>A closed-loop PID controller on an Arduino, tuned for stable tracking across variable-contrast surfaces.</p>
+          <p>An 8-sensor IR array with per-sensor calibration feeding a tuned PID loop, plus track-loss recovery and finish-line detection.</p>
+          <div class="chips"><span>C++</span><span>Arduino</span><span>PID</span></div>
           <span class="chev">Read the case study</span>
         </a>
       </div>
@@ -530,7 +653,7 @@ footer{
         <ul>
           <li>B.S. Electrical Engineering, UCLA Samueli School of Engineering — expected June 2029</li>
           <li>GPA 3.74 / 4.00</li>
-          <li>Interests: photonics, semiconductor test and characterization, test and measurement automation, embedded systems</li>
+          <li>Interests: photonics, semiconductor test and characterization, test and measurement automation, power electronics, embedded systems</li>
           <li>Seeking Summer 2027 internships in hardware engineering, test, and validation</li>
           <li>Based in San Jose, CA, and in Los Angeles during the academic year</li>
         </ul>
@@ -569,15 +692,18 @@ footer{
         <h3>Photonics and the measurement bench</h3>
         <p>At UCLA I've moved toward <strong>photonics and semiconductor devices</strong>. As a SURP Research Fellow in the Terahertz and Infrared Photonics Group, I work with terahertz quantum cascade lasers. They are among the few compact, solid-state sources in a part of the spectrum that is otherwise hard to reach. My main project was a device that had never been measured: a metal–metal waveguide THz QCL. I brought it up, characterized it across bias and temperature, and established its operating envelope: a 2.45–2.61&nbsp;THz tuning range and a maximum operating temperature of 133&nbsp;K.</p>
 
-        <p>Most of the engineering effort went into <strong>the software around the bench</strong>. The lab's test setup had been configured by hand through LabVIEW, which made measurements slow and hard to reproduce exactly. I built a MATLAB automation suite that communicates with the step-scan FTIR spectrometer, function generator, and lock-in amplifier over GPIB and runs full characterization sequences on its own. I paired it with analysis scripts that extract key device parameters and a GUI so other lab members can run standardized tests without editing code. All of it is maintained under Git.</p>
+        <p>Most of the engineering effort went into <strong>the software around the bench</strong>. The lab's test setup had been configured by hand through LabVIEW, which made measurements slow and hard to reproduce exactly. I replaced it with a MATLAB automation suite built on modular instrument drivers for the source meter, lock-in amplifier, FTIR spectrometer, and pulse generator. Each driver talks over SCPI, serial, or TCP, and each has a mock version so the whole system can be tested without hardware attached. On top of that sit analysis scripts that extract key device parameters, and a GUI that lets other lab members run standardized tests without editing code. The GUI is deployed to the shared lab PC through a self-updating Git distribution, so everyone always runs the latest version.</p>
 
         <p>That combination is what I enjoy most: <strong>a physical device on the bench and the software that makes sense of it</strong>. A measurement is only as trustworthy as the pipeline behind it, and I prefer to own both the hardware and the software.</p>
 
+        <h3>Power electronics</h3>
+        <p>On Bruin Underwater Robotics' electrical subteam, I own the <strong>step-down subsystem of the AUV's battery management board</strong>, which converts the 14.4&nbsp;V battery rail to a regulated 9&nbsp;V rail. The current revision uses a linear regulator (LDO), and I'm designing a buck converter to replace it to improve conversion and thermal efficiency. I also contribute to the vehicle's chassis frame and thruster configuration with the mechanical team.</p>
+
         <h3>Software and AI</h3>
-        <p>I'm also interested in how language models handle technical reasoning. As an AI Training Fellow at Handshake AI, I evaluate frontier models through structured RLHF pipelines and audit AI-generated engineering and CS solutions for logical consistency. I've also built my own applications on top of LLMs. These include a retrieval-augmented research assistant for semiconductor physics papers, which I use for my own lab reading and later turned into a full-stack web app, and a financial research agent that generates structured investment memos.</p>
+        <p>I'm also interested in how language models handle technical reasoning. As an AI Training Fellow at Handshake AI, I evaluate frontier models through structured RLHF pipelines and audit AI-generated engineering and CS solutions for logical consistency. I've also shipped my own LLM applications as full-stack FastAPI and React/TypeScript apps. One is an agentic research assistant over THz photonics papers that I use for my own lab reading. The other is a financial research agent that writes schema-validated investment memos and is backed by a 149-test suite.</p>
 
         <h3>What's next</h3>
-        <p>I'm looking for <strong>Summer 2027 internships</strong> close to hardware, including photonics and optoelectronic devices, semiconductor test and validation, test and measurement automation, and embedded systems. I'm happiest in roles that combine time at the bench with writing the software that runs it.</p>
+        <p>I'm looking for <strong>Summer 2027 internships</strong> close to hardware, including photonics and optoelectronic devices, semiconductor test and validation, test and measurement automation, power electronics, and embedded systems. I'm happiest in roles that combine time at the bench with writing the software that runs it.</p>
       </div>
 
       <aside class="rail">
@@ -604,7 +730,7 @@ footer{
           <h4>Involvement</h4>
           <div class="row">
             <div class="t">Bruin Underwater Robotics (ASME)</div>
-            <div class="s">Robotics Engineer, mechanical design</div>
+            <div class="s">Robotics Engineer, electrical subteam</div>
           </div>
           <div class="row">
             <div class="t">IEEE at UCLA</div>
@@ -651,11 +777,11 @@ footer{
     <article class="case" id="case-thz-qcl">
       <p class="eyebrow">Research · UCLA SURP · June 2026 – present</p>
       <h2>Bringing up a terahertz quantum cascade laser, and automating the bench that measures it</h2>
-      <p class="summary">I independently characterized a previously untested metal–metal waveguide THz quantum cascade laser. Along the way, I replaced the lab's manual test configuration with an automated MATLAB measurement and analysis pipeline.</p>
+      <p class="summary">I independently characterized a previously untested metal–metal waveguide THz quantum cascade laser. Along the way, I replaced the lab's manual LabVIEW test configuration with an automated MATLAB measurement and analysis system built on modular instrument drivers.</p>
 
       <div class="meta">
         <div><div class="k">Role</div><div class="v">Research Fellow, Terahertz and Infrared Photonics Group</div></div>
-        <div><div class="k">Tools</div><div class="v">MATLAB, GPIB, step-scan FTIR, lock-in amplifier, function generator, cryostat, Git</div></div>
+        <div><div class="k">Tools</div><div class="v">MATLAB, GPIB, NI-VISA, SCPI, step-scan FTIR, lock-in amplifier, cryostat, Git</div></div>
         <div><div class="k">Outcome</div><div class="v">Full operating envelope of a new device, plus a reusable test suite for the group</div></div>
       </div>
 
@@ -673,21 +799,30 @@ footer{
         <p>The lab's characterization workflow relied on configuring instruments manually through LabVIEW. Every change in operating condition, such as a new bias point, a switch between pulsed and continuous-wave drive, or a new temperature, meant reconfiguring the setup by hand. That made full characterization slow, made it hard to repeat a measurement exactly, and created opportunities for human error between runs.</p>
 
         <h3>What I built</h3>
-        <p>I developed a MATLAB test automation suite that communicates with each instrument over <strong>GPIB</strong> and sequences the whole multi-instrument setup from a single program:</p>
+        <p>I built a MATLAB test automation suite that controls and sequences the whole multi-instrument setup over GPIB from a single program:</p>
         <ol class="flow">
           <li><div class="ft">Configure</div><div class="fd">Lab members set test parameters in a GUI, with no code edits required.</div></li>
-          <li><div class="ft">Control</div><div class="fd">MATLAB drives the function generator, lock-in amplifier, and FTIR over GPIB.</div></li>
+          <li><div class="ft">Control</div><div class="fd">Modular drivers command each instrument over SCPI, serial, or TCP.</div></li>
           <li><div class="ft">Bias the DUT</div><div class="fd">The laser is swept across bias in pulsed and continuous-wave modes.</div></li>
           <li><div class="ft">Acquire</div><div class="fd">Optical output and spectra are captured automatically at each operating point.</div></li>
           <li><div class="ft">Analyze</div><div class="fd">Scripts generate performance plots and extract device parameters.</div></li>
         </ol>
         <p class="figcap">The automated characterization pipeline, from test configuration to extracted parameters.</p>
 
+        <h3>Modular instrument drivers</h3>
+        <p>The core of the system is a set of <strong>modular instrument drivers</strong>, one per instrument, each built on an interchangeable transport layer (SCPI over GPIB, serial, or TCP):</p>
+        <div class="drivers">
+          <div><div class="m">Keithley 2420</div><div class="r">Source meter</div></div>
+          <div><div class="m">SR830</div><div class="r">Lock-in amplifier</div></div>
+          <div><div class="m">Nicolet 8700</div><div class="r">FTIR spectrometer</div></div>
+          <div><div class="m">8114A</div><div class="r">Pulse generator</div></div>
+        </div>
+        <p>Every driver has a matching <strong>mock instrument</strong> that behaves like the real one. That means the full GUI and every test sequence can be validated on a laptop with no hardware attached, so bugs get caught before they cost bench time on a cryogenically cooled device.</p>
+
         <ul>
-          <li><strong>Instrument control.</strong> Scripts handle communication with the step-scan FTIR spectrometer, function generator, and lock-in amplifier, replacing manual setup in LabVIEW.</li>
           <li><strong>Characterization sequences.</strong> Full test runs bias the device under test and capture its output across pulsed and continuous-wave operating conditions with no manual reconfiguration between steps, which makes results directly repeatable.</li>
           <li><strong>Data analysis.</strong> Analysis scripts process the acquired data, generate performance plots, and extract the parameters that define the device's behavior, so they can be compared with expected operating behavior.</li>
-          <li><strong>GUI for the group.</strong> A MATLAB GUI lets other lab members configure parameters and run standardized validation sequences without touching the underlying code. The project is maintained under Git so procedures stay documented and reproducible across the team.</li>
+          <li><strong>GUI and deployment.</strong> A MATLAB GUI lets other lab members configure parameters and run standardized validation sequences without touching the underlying code. It is deployed to the shared lab PC through a <strong>self-updating Git distribution</strong>, so the bench always runs the latest version and every change stays documented.</li>
         </ul>
 
         <h3>Parameters extracted</h3>
@@ -698,7 +833,7 @@ footer{
         </div>
 
         <h3>Results</h3>
-        <p>Using this pipeline, I brought up the previously untested device and established its full operating envelope. The laser tunes from <strong>2.45 to 2.61&nbsp;THz</strong> with bias and operates up to a maximum temperature of <strong>133&nbsp;K</strong>. The automation suite and GUI remain in use, giving the group a standardized, repeatable way to characterize future devices.</p>
+        <p>Using this system, I brought up the previously untested device and established its full operating envelope. The laser tunes from <strong>2.45 to 2.61&nbsp;THz</strong> with bias and operates up to a maximum temperature of <strong>133&nbsp;K</strong>. The automation suite and GUI remain in use, giving the group a standardized, repeatable way to characterize future devices.</p>
       </div>
     </article>
 
@@ -706,35 +841,37 @@ footer{
     <article class="case" id="case-quantum-rag">
       <p class="eyebrow">Project · 2026</p>
       <h2>Quantum RAG Assistant</h2>
-      <p class="summary">A retrieval-augmented assistant for semiconductor physics literature that answers questions with cited sources. It started as a tool for my own lab reading and grew into a full-stack web application.</p>
+      <p class="summary">An agentic retrieval-augmented assistant over terahertz photonics papers that checks its own answers for grounding and cites the exact source PDF page. It started as a tool for my own lab reading and grew into a production-style web application.</p>
 
       <div class="meta">
-        <div><div class="k">Stack</div><div class="v">Python, ChromaDB, LangGraph, React, TypeScript</div></div>
-        <div><div class="k">Focus</div><div class="v">Grounded answers, agentic self-critique, production-style backend</div></div>
+        <div><div class="k">Stack</div><div class="v">Python, LangGraph, ChromaDB, FastAPI, React/TypeScript (Vite), SQLite</div></div>
+        <div><div class="k">Focus</div><div class="v">Grounded, cited answers; agentic retrieval; production hardening</div></div>
         <div><div class="k">Source</div><div class="v"><a href="https://github.com/HowardTaken/quantum-rag-assistant" target="_blank" rel="noopener">github.com/HowardTaken/quantum-rag-assistant</a></div></div>
       </div>
 
       <div class="case-body">
         <h3>Motivation</h3>
-        <p>Research in my lab draws on dense semiconductor physics literature, and finding the right passage across many papers is slow. Keyword search works poorly here because the same idea is often described in different terms. I wanted a tool that could answer a specific question using the papers themselves and show exactly where each answer came from.</p>
+        <p>My lab research draws on dense THz photonics literature, and finding the right passage across many papers is slow. Keyword search works poorly because the same idea is often described in different terms. I wanted a tool that answers specific questions using the papers themselves and shows exactly where each answer came from.</p>
 
-        <h3>How it works</h3>
+        <h3>How the agent works</h3>
         <ul>
-          <li><strong>Ingestion.</strong> Papers are parsed, split into chunks, embedded, and stored in a <strong>ChromaDB</strong> vector database, which enables semantic search by meaning rather than exact wording.</li>
-          <li><strong>Agentic retrieval.</strong> The assistant is implemented as a <strong>LangGraph</strong> agent. It retrieves relevant passages, drafts an answer, and then runs a <strong>self-critique step</strong> that checks the draft against the retrieved evidence. If the answer is not well supported, the agent loops back and retries before responding.</li>
-          <li><strong>Citations.</strong> Every answer includes its sources, so claims can be checked against the original papers. For research use, that traceability is essential.</li>
+          <li><strong>Ingestion.</strong> Papers are parsed, chunked, embedded, and stored in a <strong>ChromaDB</strong> vector database with their page metadata, enabling semantic search by meaning rather than exact wording.</li>
+          <li><strong>ReAct agent.</strong> The assistant is a <strong>LangGraph ReAct agent</strong> that reasons about the question and decides when and what to retrieve.</li>
+          <li><strong>Grader node.</strong> Before answering, a grader node checks whether the draft is actually supported by the retrieved passages. If it isn't grounded, the agent <strong>reformulates the query and retrieves again</strong> rather than answering from weak evidence.</li>
+          <li><strong>Page-level citations.</strong> Every answer is cited to the <strong>source PDF and page number</strong>, so any claim can be checked against the original paper in seconds.</li>
         </ul>
 
-        <h3>From script to web application</h3>
-        <p>Once the core pipeline proved useful, I turned it into a full-stack application:</p>
+        <h3>Productionizing it</h3>
+        <p>Once the core agent proved useful, I turned it into a full application:</p>
         <ul>
-          <li>A <strong>React/TypeScript</strong> frontend, deployed through a <strong>CI/CD</strong> pipeline.</li>
-          <li>Production-style backend safeguards, including <strong>authentication</strong>, <strong>rate limiting</strong>, and <strong>CORS</strong> configuration.</li>
-          <li><strong>Persistent multi-turn conversation state</strong>, so follow-up questions build on earlier context instead of starting over.</li>
+          <li>A <strong>FastAPI</strong> backend and a <strong>React/Vite</strong> TypeScript frontend.</li>
+          <li><strong>API-key authentication</strong>, <strong>per-IP rate limiting</strong>, and <strong>CORS</strong> configuration to protect the service and the LLM budget behind it.</li>
+          <li><strong>Per-thread SQLite checkpointer memory</strong>, so each conversation keeps its own multi-turn state and follow-up questions build on earlier context.</li>
+          <li><strong>Continuous integration</strong> that runs backend and frontend tests and deploys the frontend.</li>
         </ul>
 
         <h3>Takeaway</h3>
-        <p>The project took me from a working prototype to a deployable service. Retrieval quality and the self-critique loop determine whether answers are trustworthy, while the surrounding infrastructure (auth, rate limits, state, deployment) determines whether anyone else can actually use it.</p>
+        <p>Retrieval quality and the grading loop decide whether answers can be trusted, and the infrastructure (auth, rate limits, persistent state, CI) decides whether anyone else can actually use it. Building both taught me how to take a working prototype to a deployable service.</p>
       </div>
     </article>
 
@@ -742,27 +879,40 @@ footer{
     <article class="case" id="case-market-analyst">
       <p class="eyebrow">Project · 2026</p>
       <h2>AI-Powered Market Analyst Agent</h2>
-      <p class="summary">A multi-source financial intelligence pipeline that turns raw company data into a structured investment memo covering valuation and risk, cutting research time from hours to seconds.</p>
+      <p class="summary">A Gemini-powered agent that researches a public company end to end and writes a schema-validated Buy/Hold/Sell memo. It ships as a full-stack app with live streaming and a 149-test suite.</p>
 
       <div class="meta">
-        <div><div class="k">Stack</div><div class="v">Python, Gemini API, Financial Modeling Prep API</div></div>
-        <div><div class="k">Focus</div><div class="v">Data integration, domain-aware edge cases, structured generation</div></div>
+        <div><div class="k">Stack</div><div class="v">Python, Gemini API, Financial Modeling Prep API, FastAPI, React/TypeScript</div></div>
+        <div><div class="k">Testing</div><div class="v">149 tests: 120 Python, 29 frontend</div></div>
         <div><div class="k">Source</div><div class="v"><a href="https://github.com/HowardTaken/AI-Financial-Analyst" target="_blank" rel="noopener">github.com/HowardTaken/AI-Financial-Analyst</a></div></div>
       </div>
 
+      <div class="specs">
+        <div class="spec"><div class="n">1–3 min</div><div class="l">Per full analysis, versus hours of manual research</div></div>
+        <div class="spec"><div class="n">149</div><div class="l">Automated tests across backend and frontend</div></div>
+      </div>
+
       <div class="case-body">
-        <h3>The problem</h3>
-        <p>A first-pass investment memo means pulling financial statements, computing valuation metrics, reading filings, and writing up risks. That can easily take hours of manual work. I wanted to automate the whole path from raw data to a structured, readable analysis.</p>
-
-        <h3>Approach</h3>
+        <h3>What the agent does</h3>
+        <p>Given a ticker, the agent works through the same steps an analyst would, calling tools for each one:</p>
         <ul>
-          <li><strong>Multi-source pipeline.</strong> The Python pipeline combines structured financial data from the Financial Modeling Prep API with unstructured regulatory filings, assembling both into a single context for the Gemini model.</li>
-          <li><strong>End-to-end generation.</strong> The model produces a structured memo with valuation and risk analysis, so output is consistent from company to company.</li>
-          <li><strong>Domain-aware edge cases.</strong> The pipeline correctly <strong>excludes banking institutions from discounted cash flow (DCF) valuation</strong>. For a bank, debt and deposits are part of normal operations rather than financing, so the standard free-cash-flow model does not produce a meaningful value. Detecting this case instead of blindly applying a DCF keeps the output from being confidently wrong.</li>
+          <li><strong>Fundamentals</strong> from the Financial Modeling Prep API.</li>
+          <li><strong>Discounted cash flow (DCF) valuation</strong> where it applies.</li>
+          <li><strong>10-K risk factors</strong> and <strong>earnings call</strong> commentary.</li>
+          <li><strong>Peer comparables</strong> to put the numbers in context.</li>
         </ul>
+        <p>It then writes a <strong>Buy/Hold/Sell memo validated against a schema</strong>, so every report has the same structure and malformed output is caught instead of shown to the user.</p>
 
-        <h3>Result</h3>
-        <p>Generating an investment memo went from hours of manual research to seconds. The more important lesson was that useful automation depends on encoding domain rules explicitly, not just passing data to a model.</p>
+        <h3>Domain guardrails</h3>
+        <p>A DCF is not meaningful for every company. For <strong>banks and insurers</strong>, debt, deposits, and float are part of normal operations rather than financing, so free cash flow doesn't capture how the business creates value. The agent detects these companies and <strong>reroutes them to a price-to-book plus return-on-equity (P/B + ROE) valuation</strong>, the standard approach for financial institutions, instead of producing a confidently wrong DCF.</p>
+
+        <h3>Shipping it</h3>
+        <ul>
+          <li>A <strong>FastAPI</strong> backend and <strong>React/TypeScript</strong> frontend.</li>
+          <li><strong>Live Server-Sent Events (SSE) streaming</strong> of the agent's tool calls, so users watch the research happen step by step instead of waiting on a spinner.</li>
+          <li>A <strong>149-test suite</strong> (120 Python, 29 frontend) covering the pipeline, guardrails, and UI.</li>
+        </ul>
+        <p>Each analysis completes in <strong>1–3 minutes</strong>, compared with hours of manual research.</p>
       </div>
     </article>
 
@@ -770,48 +920,63 @@ footer{
     <article class="case" id="case-line-follower">
       <p class="eyebrow">Project · 2026</p>
       <h2>Autonomous Line-Following Robot</h2>
-      <p class="summary">A closed-loop PID controller on an Arduino that integrates an IR sensor array with motor driver circuitry to track a line smoothly and accurately.</p>
+      <p class="summary">An Arduino robot that fuses an 8-sensor IR array into a single tracking error and steers with a tuned PID loop. It recovers when it loses the track and stops at the finish line.</p>
 
       <div class="meta">
-        <div><div class="k">Stack</div><div class="v">C++, Arduino, IR sensor array, motor driver</div></div>
-        <div><div class="k">Focus</div><div class="v">Real-time feedback control and empirical gain tuning</div></div>
+        <div><div class="k">Stack</div><div class="v">C++, Arduino, 8-sensor IR array, dual motor drivers</div></div>
+        <div><div class="k">Focus</div><div class="v">Sensor fusion, real-time feedback control, robustness</div></div>
         <div><div class="k">Source</div><div class="v"><a href="https://github.com/HowardTaken/ece3-pid-line-follower" target="_blank" rel="noopener">github.com/HowardTaken/ece3-pid-line-follower</a></div></div>
       </div>
 
       <div class="case-body">
-        <h3>How it works</h3>
-        <p>An IR sensor array under the robot measures where the line sits relative to the center of the chassis. On every control cycle, that reading becomes a position error, and a <strong>PID controller</strong> converts the error into a steering correction applied through the motor driver:</p>
+        <h3>Sensing</h3>
+        <ul>
+          <li><strong>Per-sensor calibration.</strong> No two IR sensors respond identically, so each of the eight is calibrated individually and its readings are normalized before use.</li>
+          <li><strong>Weighted-error fusion.</strong> The normalized readings are combined with position weights into a single error value representing where the line sits relative to the center of the robot.</li>
+        </ul>
+
+        <h3>Control</h3>
+        <p>A <strong>PID controller</strong> converts that error into differential speed commands for the dual motor drivers:</p>
         <ul>
           <li><strong>Proportional</strong> action steers back toward the line in proportion to how far off it is.</li>
           <li><strong>Integral</strong> action removes persistent offset, so the robot doesn't settle slightly to one side.</li>
           <li><strong>Derivative</strong> action damps the response, so the robot doesn't overshoot and oscillate.</li>
         </ul>
+        <p>I tuned the gains to minimize tracking error and oscillation across <strong>variable-contrast surfaces</strong>, where changes in line and background contrast can push a loop tuned on one surface into oscillation on another.</p>
 
-        <h3>Tuning</h3>
-        <p>I tuned the gain coefficients empirically to minimize tracking error and oscillation. The hardest condition was <strong>variable-contrast surfaces</strong>: when the difference between line and background changes, the sensor readings shift, and gains that work well on one surface can cause oscillation on another. The final tuning balanced responsiveness against stability across those conditions.</p>
+        <h3>Robustness</h3>
+        <ul>
+          <li><strong>Track-loss recovery.</strong> If every sensor loses the line, the robot uses its last known error to steer back toward it instead of driving off course.</li>
+          <li><strong>Finish-line detection.</strong> The robot recognizes the finish marker and stops on its own.</li>
+        </ul>
       </div>
     </article>
 
     <!-- ---------------- AUV ---------------- -->
     <article class="case" id="case-auv">
       <p class="eyebrow">Team engineering · Sept 2025 – present</p>
-      <h2>Bruin Underwater Robotics: autonomous underwater vehicle</h2>
-      <p class="summary">As a Robotics Engineer on UCLA's ASME underwater robotics team, I contribute to the mechanical design of an autonomous underwater vehicle (AUV).</p>
+      <h2>Bruin Underwater Robotics: AUV power and structure</h2>
+      <p class="summary">As a Robotics Engineer on the electrical subteam of UCLA's ASME underwater robotics team, I own the step-down power stage of the AUV's battery management board, and I contribute to the vehicle's chassis and thruster layout.</p>
 
       <div class="meta">
-        <div><div class="k">Role</div><div class="v">Robotics Engineer, mechanical design team</div></div>
-        <div><div class="k">Areas</div><div class="v">Chassis frame architecture, thruster configuration</div></div>
-        <div><div class="k">Collaboration</div><div class="v">Electrical subsystem team, component integration</div></div>
+        <div><div class="k">Role</div><div class="v">Robotics Engineer, electrical subteam</div></div>
+        <div><div class="k">Areas</div><div class="v">BMS step-down subsystem, chassis frame, thruster configuration</div></div>
+        <div><div class="k">Rail</div><div class="v">14.4 V battery → regulated 9 V</div></div>
       </div>
 
       <div class="case-body">
-        <p>I contribute to the AUV's <strong>chassis frame architecture</strong> and <strong>thruster configuration</strong>. The frame and thruster layout determine how the vehicle moves and holds its position underwater, so the work involves trade-offs between several competing goals:</p>
+        <h3>BMS step-down subsystem</h3>
+        <p>I'm responsible for the part of the <strong>battery management system (BMS) board</strong> that converts the 14.4&nbsp;V battery rail into a regulated 9&nbsp;V rail. The current revision uses a <strong>low-dropout linear regulator (LDO)</strong>. LDOs are simple and quiet, but they regulate by dropping the excess voltage across themselves as heat. Going from 14.4&nbsp;V to 9&nbsp;V, a linear regulator can be at most about 9&nbsp;/&nbsp;14.4&nbsp;≈&nbsp;62% efficient, and the rest of the power heats up a sealed underwater enclosure.</p>
+        <p>I'm developing a <strong>buck converter</strong> to replace it. A switching regulator stores and releases energy through an inductor instead of burning it off, which improves both conversion efficiency and thermal performance. That means more runtime from the same battery and less heat to manage inside the hull.</p>
+
+        <h3>Chassis and thrusters</h3>
+        <p>I also contribute to the AUV's <strong>chassis frame architecture</strong> and <strong>thruster configuration</strong> with the mechanical team. That work weighs several competing goals:</p>
         <ul>
           <li><strong>Rigidity.</strong> The frame has to stay stiff enough to keep thrusters and sensors aligned without adding unnecessary mass.</li>
           <li><strong>Buoyancy distribution.</strong> How buoyancy and weight are distributed affects the vehicle's resting attitude and how much work the thrusters must do to hold position.</li>
           <li><strong>Hydrodynamic stability.</strong> Thruster placement and orientation determine how predictably the vehicle can be controlled in each direction of motion.</li>
         </ul>
-        <p>Because an AUV has to navigate on its own, mechanical choices directly affect how hard the control problem becomes. I work closely with the electrical subsystem team on component integration so that electronics, wiring, and enclosures fit the frame without compromising those goals.</p>
+        <p>Working on both the electrical and mechanical sides means I handle component integration from both directions, making sure the electronics, wiring, and enclosures fit the frame without compromising it.</p>
       </div>
     </article>
 
@@ -910,13 +1075,14 @@ footer{
         </div>
 
         <ul>
-          <li>Developed a MATLAB test automation suite that communicates with lab instrumentation over GPIB to control and sequence a multi-instrument setup (step-scan FTIR spectrometer, function generator, lock-in amplifier), replacing manual test configuration via LabVIEW.</li>
+          <li>Replaced the lab's manual LabVIEW test configuration with a MATLAB automation suite that controls and sequences a multi-instrument setup (step-scan FTIR spectrometer, function generator, lock-in amplifier) over GPIB.</li>
           <li>Wrote scripts to automate instrument communication and full device characterization sequences, biasing the device under test and capturing output across pulsed and continuous-wave operating conditions, which eliminated manual reconfiguration and improved test repeatability.</li>
           <li>Wrote data analysis scripts to process acquired test data, generate performance plots, and extract key device parameters (threshold current density, slope efficiency, characteristic temperature) against expected operating behavior.</li>
-          <li>Built a GUI enabling other lab members to configure test parameters and run standardized validation sequences without editing underlying code, maintained under Git version control to support clear documentation and repeatable test procedures across the team.</li>
+          <li>Built a MATLAB GUI letting lab members configure test parameters and run standardized validation sequences without editing code; deployed to the shared lab PC via a self-updating Git distribution.</li>
+          <li>Architected modular instrument drivers (SCPI/serial/TCP transports) for the Keithley 2420 source meter, SR830 lock-in amplifier, Nicolet 8700 FTIR spectrometer, and 8114A pulse generator, with mock instruments enabling full GUI validation without hardware attached.</li>
           <li>Independently brought up and characterized a previously untested hardware device, a metal–metal waveguide terahertz quantum cascade laser, establishing its full operating envelope: 2.45–2.61 THz bias tuning range and 133 K maximum operating temperature.</li>
         </ul>
-        <p class="tools">MATLAB · GPIB · LabVIEW · step-scan FTIR spectrometer · lock-in amplifier · function generator · cryostat · Git</p>
+        <p class="tools">MATLAB · GPIB · NI-VISA · SCPI · LabVIEW · step-scan FTIR spectrometer · lock-in amplifier · source meter · pulse generator · cryostat · Git</p>
         <div class="links"><a class="chev" href="#projects/thz-qcl">Read the full case study</a></div>
       </div>
 
@@ -952,14 +1118,15 @@ footer{
 
       <div class="entry rise">
         <div class="entry-top">
-          <h3>Robotics Engineer</h3>
+          <h3>Robotics Engineer, Electrical Subteam</h3>
           <span class="when">September 2025 – present</span>
         </div>
         <p class="where">Bruin Underwater Robotics (ASME) at UCLA · Los Angeles, CA</p>
         <ul>
-          <li>Contribute to AUV chassis frame architecture and thruster configuration as part of the mechanical design team, evaluating trade-offs in rigidity, buoyancy distribution, and hydrodynamic stability while collaborating with the electrical subsystem team on component integration.</li>
+          <li>Responsible for the AUV battery management system (BMS) board's step-down subsystem, converting the 14.4 V battery rail to a regulated 9 V rail; the current revision uses an LDO, and I am developing a buck converter replacement to improve conversion and thermal efficiency.</li>
+          <li>Contributed to AUV chassis frame architecture and thruster configuration as part of the mechanical design team, evaluating trade-offs in rigidity, buoyancy distribution, and hydrodynamic stability while collaborating with the electrical subsystem team on component integration.</li>
         </ul>
-        <p class="tools">Onshape · 3D printing · mechanical design</p>
+        <p class="tools">Power electronics · buck converters · LDOs · Onshape · mechanical design</p>
         <div class="links"><a class="chev" href="#projects/auv">Read more</a></div>
       </div>
 
@@ -986,10 +1153,10 @@ footer{
           <h3>AI-Powered Market Analyst Agent</h3>
           <span class="when">2026</span>
         </div>
-        <p class="where">Python · Gemini API · Financial Modeling Prep API</p>
+        <div class="chips"><span>Python</span><span>Gemini API</span><span>Financial Modeling Prep API</span><span>FastAPI</span><span>React/TypeScript</span></div>
         <ul>
-          <li>Architected a multi-source financial intelligence pipeline in Python integrating the Gemini and Financial Modeling Prep APIs, with edge-case logic that correctly excludes banking institutions from DCF valuation.</li>
-          <li>Automated end-to-end investment memo generation, from raw financial data to structured valuation and risk analysis, cutting research time from hours to seconds.</li>
+          <li>Built a Gemini-powered agent that researches a public company (fundamentals, DCF, 10-K risk factors, earnings calls, peer comps) and writes a schema-validated Buy/Hold/Sell memo, with guardrails that reroute banks and insurers from DCF to P/B + ROE valuation.</li>
+          <li>Shipped it as a FastAPI + React/TypeScript app with live SSE streaming of the agent's tool calls and a 149-test suite (120 Python, 29 frontend); each analysis completes in 1–3 minutes versus hours of manual research.</li>
         </ul>
         <div class="links">
           <a class="chev" href="#projects/market-analyst">Read the case study</a>
@@ -1002,10 +1169,10 @@ footer{
           <h3>Quantum RAG Assistant</h3>
           <span class="when">2026</span>
         </div>
-        <p class="where">Python · ChromaDB · LLM integration · React/TypeScript · LangGraph</p>
+        <div class="chips"><span>Python</span><span>ChromaDB</span><span>LangGraph</span><span>FastAPI</span><span>React/TypeScript</span></div>
         <ul>
-          <li>Built a Retrieval-Augmented Generation system with ChromaDB to ingest, parse, and query semiconductor physics literature, accelerating literature review for ongoing lab research; implemented as a LangGraph agent with a self-critique retry loop returning cited sources.</li>
-          <li>Converted the tool into a full-stack web app with a React/TypeScript frontend deployed via CI/CD, and production-style backend safeguards (auth, rate limiting, CORS) with persistent multi-turn conversation state.</li>
+          <li>Built an agentic RAG system over THz photonics papers to accelerate literature review for my lab research: a LangGraph ReAct agent whose grader node re-retrieves with reformulated queries when answers aren't grounded, returning answers cited to source PDF page numbers.</li>
+          <li>Productionized it as a FastAPI + React/Vite app with API-key auth, per-IP rate limiting, CORS, and per-thread SQLite checkpointer memory for multi-turn conversation; CI runs backend/frontend tests and deploys the frontend.</li>
         </ul>
         <div class="links">
           <a class="chev" href="#projects/quantum-rag">Read the case study</a>
@@ -1018,9 +1185,9 @@ footer{
           <h3>Autonomous Line-Following Robot</h3>
           <span class="when">2026</span>
         </div>
-        <p class="where">C++ · Arduino · PID control</p>
+        <div class="chips"><span>C++</span><span>Arduino</span><span>PID control</span></div>
         <ul>
-          <li>Designed and tuned a closed-loop PID controller on an Arduino, integrating an IR sensor array with motor driver circuitry; empirically tuned gain coefficients to minimize tracking error and oscillation across variable-contrast surfaces.</li>
+          <li>Built a line-following robot on Arduino (C++) using an 8-sensor IR array with per-sensor calibration and weighted-error fusion driving dual motor drivers; tuned the PID loop to minimize tracking error and oscillation across variable-contrast surfaces, adding track-loss recovery and finish-line detection.</li>
         </ul>
         <div class="links">
           <a class="chev" href="#projects/line-follower">Read the case study</a>
@@ -1032,10 +1199,10 @@ footer{
     <section>
       <div class="sec-head"><h2>Technical skills</h2></div>
       <div class="skills">
-        <div class="row"><div class="k">Languages &amp; tools</div><div class="v">MATLAB, Python, C++, C, Java, TypeScript, Git</div></div>
-        <div class="row"><div class="k">Instrumentation</div><div class="v">Instrument control &amp; automation, GPIB communication, FTIR spectroscopy, lock-in amplifiers, function &amp; pulse generators, oscilloscopes, cryostats, LabVIEW, MATLAB GUI development</div></div>
-        <div class="row"><div class="k">AI &amp; software</div><div class="v">Gemini API, RAG, ChromaDB, LangGraph, RLHF, React, REST API design, CI/CD, Vitest, React Testing Library</div></div>
-        <div class="row"><div class="k">Hardware &amp; design</div><div class="v">Arduino, STM32, circuit analysis, soldering, CAD (Onshape), 3D printing</div></div>
+        <div class="row"><div class="k">Languages &amp; tools</div><div class="chips"><span>MATLAB</span><span>Python</span><span>C++</span><span>C</span><span>Java</span><span>TypeScript</span><span>Git</span></div></div>
+        <div class="row"><div class="k">Instrumentation</div><div class="chips"><span>Instrument control &amp; automation</span><span>GPIB</span><span>NI-VISA</span><span>FTIR spectroscopy</span><span>Lock-in amplifiers</span><span>Function &amp; pulse generators</span><span>Oscilloscopes</span><span>Cryostats</span><span>LabVIEW</span><span>MATLAB GUI development</span></div></div>
+        <div class="row"><div class="k">AI &amp; software</div><div class="chips"><span>Gemini API</span><span>RAG</span><span>ChromaDB</span><span>LangGraph</span><span>RLHF</span><span>FastAPI</span><span>React</span><span>Streamlit</span><span>REST API design</span><span>CI/CD</span><span>Vitest</span><span>React Testing Library</span></div></div>
+        <div class="row"><div class="k">Hardware &amp; design</div><div class="chips"><span>Arduino</span><span>STM32</span><span>Circuit analysis</span><span>Soldering</span><span>CAD (Onshape)</span><span>3D printing</span></div></div>
       </div>
     </section>
 
@@ -1110,7 +1277,7 @@ footer{
           <li>Photonics and optoelectronic device engineering</li>
           <li>Semiconductor test, characterization, and validation</li>
           <li>Test and measurement automation</li>
-          <li>Embedded systems and control</li>
+          <li>Power electronics, embedded systems, and control</li>
         </ul>
       </div>
     </section>
@@ -1127,6 +1294,130 @@ footer{
 
 
 <script>
+/* ==================================================================
+   Animated wave graphics — banner field and avatar oscilloscope
+   ================================================================== */
+var Waves = (function(){
+  "use strict";
+
+  var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var scenes = [];
+  var raf = null;
+
+  function fit(s){
+    var r = s.canvas.getBoundingClientRect();
+    if(!r.width){ return false; }
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    if(s.w !== r.width || s.h !== r.height){
+      s.w = r.width; s.h = r.height;
+      s.canvas.width = Math.round(r.width * dpr);
+      s.canvas.height = Math.round(r.height * dpr);
+      s.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    return true;
+  }
+
+  // Banner: drifting terahertz wave packets on a dark field.
+  var field = [
+    {y:.30, a:26, k:.020, v:.9,  p:0.0, c:"103,232,249", o:.55, sig:.30, drift:.05},
+    {y:.42, a:34, k:.014, v:.6,  p:1.3, c:"96,165,250",  o:.45, sig:.38, drift:.035},
+    {y:.55, a:22, k:.028, v:1.2, p:2.1, c:"167,139,250", o:.50, sig:.24, drift:.06},
+    {y:.62, a:40, k:.010, v:.45, p:0.7, c:"99,102,241",  o:.35, sig:.45, drift:.025},
+    {y:.48, a:16, k:.036, v:1.5, p:3.3, c:"240,171,252", o:.30, sig:.20, drift:.08},
+    {y:.72, a:18, k:.022, v:.8,  p:4.4, c:"103,232,249", o:.25, sig:.32, drift:.04}
+  ];
+
+  function drawField(s, t){
+    var ctx = s.ctx, W = s.w, H = s.h;
+    ctx.clearRect(0, 0, W, H);
+    ctx.globalCompositeOperation = "lighter";
+    field.forEach(function(f, i){
+      var sig = W * f.sig;
+      var span = W + 2 * sig;
+      var cx = ((t * f.drift * W * .12 + i * W * .37) % span) - sig;
+      // Two passes: a wide soft glow, then the crisp line.
+      for(var pass = 0; pass < 2; pass++){
+        ctx.beginPath();
+        for(var x = 0; x <= W; x += 3){
+          var d = (x - cx) / sig;
+          var env = .18 + .82 * Math.exp(-d * d);
+          var y = H * f.y + f.a * env * Math.sin(x * f.k - t * f.v + f.p);
+          if(x === 0){ ctx.moveTo(x, y); } else { ctx.lineTo(x, y); }
+        }
+        ctx.strokeStyle = "rgba(" + f.c + "," + (pass ? f.o : f.o * .25) + ")";
+        ctx.lineWidth = pass ? 1.4 : 6;
+        ctx.stroke();
+      }
+    });
+    ctx.globalCompositeOperation = "source-over";
+  }
+
+  // Avatar: oscilloscope graticule with travelling wave packets.
+  var traces = [
+    {c:"167,139,250", a:.20, k:.16, v:3.2, sig:.20, ph:1.6, off:.5},
+    {c:"103,232,249", a:.30, k:.22, v:4.0, sig:.16, ph:0,   off:0}
+  ];
+
+  function drawScope(s, t){
+    var ctx = s.ctx, W = s.w, H = s.h, mid = H / 2;
+    ctx.clearRect(0, 0, W, H);
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = "rgba(255,255,255,.08)";
+    for(var g = 1; g < 8; g++){
+      var gx = W * g / 8, gy = H * g / 8;
+      ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke();
+    }
+    ctx.strokeStyle = "rgba(255,255,255,.18)";
+    ctx.beginPath(); ctx.moveTo(0, mid); ctx.lineTo(W, mid); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(W / 2, 0); ctx.lineTo(W / 2, H); ctx.stroke();
+
+    traces.forEach(function(tr){
+      var cx = (((t * .22 + tr.off) % 1.4) - .2) * W;
+      ctx.beginPath();
+      for(var x = 0; x <= W; x += 1.5){
+        var d = (x - cx) / (W * tr.sig);
+        var y = mid - H * tr.a * Math.exp(-d * d) * Math.sin(x * tr.k - t * tr.v + tr.ph);
+        if(x === 0){ ctx.moveTo(x, y); } else { ctx.lineTo(x, y); }
+      }
+      ctx.shadowColor = "rgba(" + tr.c + ",.9)";
+      ctx.shadowBlur = 10;
+      ctx.strokeStyle = "rgba(" + tr.c + ",.95)";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+    });
+  }
+
+  function add(id, draw){
+    var c = document.getElementById(id);
+    if(c && c.getContext){ scenes.push({canvas:c, ctx:c.getContext("2d"), draw:draw, w:0, h:0}); }
+  }
+
+  // Renders only while a canvas is on the active page; stops otherwise.
+  function tick(ms){
+    var t = still ? 2.4 : ms / 1000;
+    var visible = false;
+    scenes.forEach(function(s){
+      if(s.canvas.offsetParent && fit(s)){ visible = true; s.draw(s, t); }
+    });
+    raf = (visible && !still && !document.hidden) ? requestAnimationFrame(tick) : null;
+  }
+
+  function start(){
+    if(raf === null){ raf = requestAnimationFrame(tick); }
+  }
+
+  add("wave-field", drawField);
+  add("scope", drawScope);
+  window.addEventListener("resize", start);
+  document.addEventListener("visibilitychange", start);
+  return { start:start };
+})();
+
+/* ==================================================================
+   Router
+   ================================================================== */
 (function(){
   "use strict";
 
@@ -1160,6 +1451,7 @@ footer{
       var page = document.getElementById("page-" + t);
       if(page){ page.classList.toggle("active", t === name); }
     });
+    document.body.classList.toggle("on-home", name === "home");
     var links = document.querySelectorAll(".nav [data-tab]");
     Array.prototype.forEach.call(links, function(a){
       var on = a.getAttribute("data-tab") === name;
@@ -1168,6 +1460,7 @@ footer{
     });
     document.title = TITLES[name] ? "Haoran (Howard) Ding — " + TITLES[name] : "Haoran (Howard) Ding";
     reveal();
+    Waves.start();
   }
 
   // Hashes look like "#resume" or "#projects/thz-qcl" (page / section).
