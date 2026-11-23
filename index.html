@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="description" content="Haoran (Howard) Ding — Electrical Engineering at UCLA. Terahertz quantum cascade laser characterization, test and measurement automation, power electronics, and applied AI.">
-<meta name="author" content="Haoran (Howard) Ding">
-<meta property="og:title" content="Haoran (Howard) Ding">
-<meta property="og:description" content="Electrical Engineering at UCLA. I characterize terahertz lasers and build the software and instrumentation that measure them.">
+<meta name="description" content="Howard Ding — Electrical Engineering at UCLA. Terahertz photonics research, underwater robotics, embedded systems, FPGA design, and applied AI.">
+<meta name="author" content="Howard Ding">
+<meta property="og:title" content="Howard Ding">
+<meta property="og:description" content="Electrical Engineering at UCLA. Terahertz photonics in the lab; underwater robotics, embedded systems, FPGAs, and AI everywhere else.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://howardtaken.github.io/">
 <link rel="canonical" href="https://howardtaken.github.io/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B1020'/%3E%3Cpath d='M4 16 C7 16 8 9 10 9 S13 23 16 23 S19 9 22 9 S25 16 28 16' fill='none' stroke='%2367E8F9' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
-<title>Haoran (Howard) Ding</title>
+<title>Howard Ding</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -22,8 +22,8 @@
 {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Haoran Ding",
-  "alternateName": "Howard Ding",
+  "name": "Howard Ding",
+  "alternateName": "Haoran Ding",
   "url": "https://howardtaken.github.io/",
   "email": "mailto:howardding@ucla.edu",
   "jobTitle": "Electrical Engineering Student",
@@ -143,11 +143,7 @@ section{padding:76px 0 0}
    ================================================================== */
 .banner{
   position:relative;height:340px;overflow:hidden;
-  background:
-    radial-gradient(60% 90% at 18% 20%, rgba(56,104,255,.35), transparent 70%),
-    radial-gradient(50% 80% at 85% 70%, rgba(167,139,250,.30), transparent 70%),
-    radial-gradient(40% 60% at 60% 10%, rgba(103,232,249,.18), transparent 70%),
-    var(--night);
+  background:var(--night); /* each scene paints its own glow on the canvas */
 }
 .banner::before{
   /* faint dot grid */
@@ -168,8 +164,37 @@ section{padding:76px 0 0}
   color:rgba(255,255,255,.62);text-align:right;letter-spacing:.02em;
 }
 .readout b{color:var(--cyan);font-weight:500}
+.readout{transition:opacity .35s}
+.readout.out{opacity:0}
 .banner .wrap{position:relative;height:100%}
-@media(max-width:640px){.banner{height:240px}.readout{right:20px;bottom:auto;top:76px;font-size:.66rem}}
+
+/* Apple-style pager: dots, the active one fills as a progress bar */
+.pager{
+  position:absolute;left:50%;bottom:20px;transform:translateX(-50%);z-index:3;
+  display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:980px;
+  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+}
+.pager button{appearance:none;border:0;padding:0;margin:0;background:none;cursor:pointer;color:#fff}
+.pager .pg{
+  position:relative;overflow:hidden;width:8px;height:8px;border-radius:8px;
+  background:rgba(255,255,255,.38);
+  transition:width .45s cubic-bezier(.28,.62,.35,1),background .3s;
+}
+.pager .pg:hover{background:rgba(255,255,255,.6)}
+.pager .pg.on{width:42px;background:rgba(255,255,255,.28)}
+.pager .pg i{position:absolute;inset:0;border-radius:inherit;background:#fff;transform-origin:left;transform:scaleX(var(--p,0))}
+.pager .toggle{display:flex;align-items:center;justify-content:center;width:18px;height:18px;margin-left:4px;opacity:.85}
+.pager .toggle:hover{opacity:1}
+.pager .toggle .i-play{display:none}
+.pager.paused .toggle .i-play{display:block}
+.pager.paused .toggle .i-pause{display:none}
+.pager :focus-visible{outline-color:#fff}
+@media(max-width:640px){
+  .banner{height:240px}
+  .readout{display:none} /* would sit on top of the scene artwork at phone width */
+  .pager{left:auto;right:20px;transform:none;bottom:14px;padding:7px 11px;gap:6px}
+}
 
 /* ==================================================================
    Hero
@@ -262,7 +287,7 @@ section{padding:76px 0 0}
 @media(max-width:800px){.trio{grid-template-columns:1fr}}
 .trio .item{
   border-top:1px solid var(--hair);
-  padding:24px 28px 0 0;
+  padding:24px 28px 30px 0;
 }
 @media(max-width:800px){.trio .item{padding:22px 0 6px}}
 .trio h3{margin-bottom:10px}
@@ -511,6 +536,9 @@ footer{
   .rise,.rise.in{opacity:1;transform:none;transition:none}
   .btn:active{transform:none}
   .avatar .ring,.status .dot::after{animation:none}
+  .pager .toggle{display:none}
+  .pager .pg,.readout{transition:none}
+  .pager .pg.on i{transform:scaleX(1)}
   .card:hover,.socials a:hover{transform:none}
 }
 </style>
@@ -534,12 +562,19 @@ footer{
      ================================================================== -->
 <div class="page active" id="page-home">
 
-  <header class="banner" aria-hidden="true">
-    <canvas id="wave-field"></canvas>
+  <header class="banner" role="region" aria-roledescription="carousel" aria-label="Featured engineering work">
+    <canvas id="wave-field" aria-hidden="true"></canvas>
     <div class="wrap">
-      <div class="readout">
+      <div class="readout" id="readout" aria-hidden="true">
         QCL · metal–metal waveguide<br>
         f = <b>2.45–2.61 THz</b> · T<sub>max</sub> = <b>133 K</b>
+      </div>
+      <!-- Scene dots are added by the script; one per entry in BANNER -->
+      <div class="pager" id="pager" role="group" aria-label="Choose a scene">
+        <button class="toggle" id="pager-toggle" type="button" aria-label="Pause animation">
+          <svg class="i-pause" width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><rect x="2" y="1" width="3" height="10" rx="1"></rect><rect x="7" y="1" width="3" height="10" rx="1"></rect></svg>
+          <svg class="i-play" width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.5v9l7.5-4.5z"></path></svg>
+        </button>
       </div>
     </div>
   </header>
@@ -563,13 +598,12 @@ footer{
         </div>
       </div>
 
-      <h1>Haoran (Howard) Ding</h1>
-      <p class="tagline">Electrical Engineering at UCLA. I characterize <em>terahertz lasers</em> and build the software and instrumentation that measure them.</p>
+      <h1>Howard Ding</h1>
+      <p class="tagline">Electrical Engineering at UCLA. I chase <em>terahertz light</em> in the lab, and build robots, circuits, and AI everywhere else.</p>
       <div class="status-row"><span class="status"><span class="dot"></span>Open to Summer 2027 internships</span></div>
 
       <div class="body">
-        <p>I am a Research Fellow in UCLA's Terahertz and Infrared Photonics Group through the Summer Undergraduate Research Program. There I independently brought up a previously untested metal–metal waveguide terahertz quantum cascade laser and established its full operating envelope: a 2.45–2.61&nbsp;THz bias tuning range and a 133&nbsp;K maximum operating temperature.</p>
-        <p>Much of that work was in software. I replaced the lab's manual LabVIEW test configuration with a MATLAB automation suite built on modular instrument drivers, along with analysis scripts and a GUI the rest of the group now uses. Outside the lab, I'm designing a buck converter for an autonomous underwater vehicle's battery management board, building full-stack AI applications, and evaluating frontier language models for technical reasoning.</p>
+        <p>I'm a Research Fellow in UCLA's Terahertz and Infrared Photonics Group, where I bring up experimental quantum cascade lasers and build the automation that measures them. Beyond the lab, I design sonar electronics for an autonomous underwater vehicle, write embedded software for a high-efficiency vehicle, build digital hardware on FPGAs, and ship full-stack AI applications.</p>
       </div>
       <div class="actions">
         <a class="btn" href="#projects">Explore my work</a>
@@ -582,7 +616,7 @@ footer{
       <div class="metrics rise">
         <div><div class="n">2.45–2.61 THz</div><div class="l">Laser bias tuning range established</div></div>
         <div><div class="n">133 K</div><div class="l">Maximum operating temperature</div></div>
-        <div><div class="n">149</div><div class="l">Automated tests in the Market Analyst app</div></div>
+        <div><div class="n">4 ch · 384 kHz</div><div class="l">Simultaneous-sampling hydrophone array for AUV pinger localization</div></div>
         <div><div class="n">1st Overall</div><div class="l">MATE ROV Monterey Regional, 2023</div></div>
       </div>
     </section>
@@ -598,14 +632,29 @@ footer{
           <p class="tiny when">UCLA SURP · June 2026 – present</p>
         </div>
         <div class="item rise">
+          <h3>AUV acoustic localization</h3>
+          <p>Designing a four-channel hydrophone board that lets the vehicle find the competition pinger by the tiny differences in when sound reaches each sensor.</p>
+          <p class="tiny when">Bruin Underwater Robotics · Sept 2025 – present</p>
+        </div>
+        <div class="item rise">
           <h3>AUV power electronics</h3>
           <p>Designing a buck converter to replace the LDO on the battery management board's 14.4&nbsp;V → 9&nbsp;V rail, improving conversion and thermal efficiency.</p>
           <p class="tiny when">Bruin Underwater Robotics · Sept 2025 – present</p>
         </div>
         <div class="item rise">
-          <h3>AI evaluation</h3>
-          <p>Evaluating and refining frontier language models through structured RLHF pipelines, with a focus on engineering and CS reasoning.</p>
-          <p class="tiny when">Handshake AI · Jan 2026 – present</p>
+          <h3>CAN-triggered backup camera</h3>
+          <p>A Raspberry Pi system that switches a high-efficiency vehicle's driver display from the HUD to a rear view the moment reverse is engaged.</p>
+          <p class="tiny when">UCLA Bruin Supermileage · Sept 2026 – present</p>
+        </div>
+        <div class="item rise">
+          <h3>FPGA digital design</h3>
+          <p>A 4-bit ALU calculator in SystemVerilog, taken from testbench simulation through bitstream to a live seven-segment display on a Basys3 board.</p>
+          <p class="tiny when">IEEE at UCLA, DAV · Sept 2026 – present</p>
+        </div>
+        <div class="item rise">
+          <h3>Agentic AI applications</h3>
+          <p>Full-stack LLM apps that check their own answers for grounding and cite their sources, from a THz paper assistant to a financial research agent.</p>
+          <p class="tiny when">Personal projects · 2026</p>
         </div>
       </div>
     </section>
@@ -623,18 +672,32 @@ footer{
           <div class="chips"><span>MATLAB</span><span>GPIB</span><span>SCPI</span><span>FTIR</span></div>
           <span class="chev">Read the case study</span>
         </a>
+        <a class="card rise" href="#projects/hydrophone">
+          <p class="eyebrow">Underwater robotics · Analog</p>
+          <h3>AUV hydrophone array for pinger localization</h3>
+          <p>Four hydrophones, low-noise preamps, and a simultaneous-sampling ADC that turn nanosecond arrival-time differences into a bearing.</p>
+          <div class="chips"><span>LTspice</span><span>OPA365</span><span>TLV320ADC5140</span><span>Teensy 4.1</span></div>
+          <span class="chev">Read the case study</span>
+        </a>
+        <a class="card rise" href="#projects/backup-camera">
+          <p class="eyebrow">Embedded · Automotive</p>
+          <h3>CAN-triggered backup camera</h3>
+          <p>A Raspberry Pi state machine that listens for the reverse-gear CAN message, swaps the HUD for a rear view, and overlays parking guides.</p>
+          <div class="chips"><span>Python</span><span>SocketCAN</span><span>Picamera2</span><span>Raspberry Pi</span></div>
+          <span class="chev">Read the case study</span>
+        </a>
+        <a class="card rise" href="#projects/alu-fpga">
+          <p class="eyebrow">Digital design · FPGA</p>
+          <h3>4-bit ALU calculator on a Basys3 FPGA</h3>
+          <p>Add, subtract, and shift in SystemVerilog, verified in simulation and then running on hardware with a four-digit seven-segment display.</p>
+          <div class="chips"><span>SystemVerilog</span><span>Vivado</span><span>Basys3</span></div>
+          <span class="chev">Read the case study</span>
+        </a>
         <a class="card rise" href="#projects/quantum-rag">
           <p class="eyebrow">Full-stack · AI</p>
           <h3>Quantum RAG Assistant</h3>
           <p>A LangGraph agent over THz photonics papers that re-retrieves until its answers are grounded, then cites the source PDF pages.</p>
           <div class="chips"><span>LangGraph</span><span>ChromaDB</span><span>FastAPI</span><span>React</span></div>
-          <span class="chev">Read the case study</span>
-        </a>
-        <a class="card rise" href="#projects/market-analyst">
-          <p class="eyebrow">Full-stack · AI</p>
-          <h3>AI-Powered Market Analyst Agent</h3>
-          <p>A Gemini agent that researches a public company and writes a schema-validated Buy/Hold/Sell memo in 1–3 minutes.</p>
-          <div class="chips"><span>Gemini</span><span>FastAPI</span><span>SSE</span><span>TypeScript</span></div>
           <span class="chev">Read the case study</span>
         </a>
         <a class="card rise" href="#projects/line-follower">
@@ -651,9 +714,9 @@ footer{
       <div class="panel rise">
         <h3>At a glance</h3>
         <ul>
-          <li>B.S. Electrical Engineering, UCLA Samueli School of Engineering — expected June 2029</li>
+          <li>B.S. Electrical Engineering, UCLA Samueli School of Engineering — expected 2028</li>
           <li>GPA 3.74 / 4.00</li>
-          <li>Interests: photonics, semiconductor test and characterization, test and measurement automation, power electronics, embedded systems</li>
+          <li>Interests: photonics, test and measurement automation, analog and power electronics, embedded systems, FPGA design, applied AI</li>
           <li>Seeking Summer 2027 internships in hardware engineering, test, and validation</li>
           <li>Based in San Jose, CA, and in Los Angeles during the academic year</li>
         </ul>
@@ -661,7 +724,7 @@ footer{
     </section>
 
     <footer>
-      <span>© 2026 Haoran Ding</span>
+      <span>© 2026 Howard Ding</span>
       <span>Los Angeles, California</span>
     </footer>
 
@@ -682,7 +745,7 @@ footer{
 
     <div class="bio-grid">
       <div class="prose">
-        <p>I'm <strong>Haoran Ding</strong>, and most people call me Howard. I'm an Electrical Engineering student at the UCLA Samueli School of Engineering, graduating in 2029.</p>
+        <p>I'm <strong>Howard Ding</strong>, an Electrical Engineering student at the UCLA Samueli School of Engineering, graduating in 2028.</p>
 
         <h3>How I got into engineering</h3>
         <p>I got into engineering through <strong>underwater robotics</strong>. In high school I served as CEO of a MATE ROV team for three seasons, leading a multidisciplinary group through the full design, build, and pilot cycle of a remotely operated vehicle. In 2023 we won 1st Place Overall and 1st Place in Engineering &amp; Communication at the MATE ROV Monterey Regional. The biggest lesson from those seasons was about integration: individual subsystems rarely fail on their own. Problems show up where they meet, so someone has to own the whole system and how its parts work together.</p>
@@ -696,14 +759,17 @@ footer{
 
         <p>That combination is what I enjoy most: <strong>a physical device on the bench and the software that makes sense of it</strong>. A measurement is only as trustworthy as the pipeline behind it, and I prefer to own both the hardware and the software.</p>
 
-        <h3>Power electronics</h3>
-        <p>On Bruin Underwater Robotics' electrical subteam, I own the <strong>step-down subsystem of the AUV's battery management board</strong>, which converts the 14.4&nbsp;V battery rail to a regulated 9&nbsp;V rail. The current revision uses a linear regulator (LDO), and I'm designing a buck converter to replace it to improve conversion and thermal efficiency. I also contribute to the vehicle's chassis frame and thruster configuration with the mechanical team.</p>
+        <h3>Underwater robotics: sensing and power</h3>
+        <p>On Bruin Underwater Robotics' electrical subteam, I'm designing a <strong>four-channel hydrophone system</strong> so the AUV can localize the competition's acoustic pinger, a capability the current vehicle lacks. It's an analog and mixed-signal design problem: transimpedance preamplifiers, a simultaneous-sampling ADC, and a Teensy that streams the data to the host. I also own the <strong>step-down subsystem of the battery management board</strong>, where I'm replacing an LDO with a buck converter to take the 14.4&nbsp;V battery rail down to 9&nbsp;V more efficiently, and I contribute to the chassis frame and thruster layout.</p>
+
+        <h3>Embedded systems and digital design</h3>
+        <p>With UCLA Bruin Supermileage, I'm writing the Python control software for a <strong>CAN-triggered backup camera</strong> on a Raspberry Pi: it decodes the reverse-gear message from the UI board, debounces it, and switches the driver's display between the HUD and a rear view. Through IEEE at UCLA's Digital Design, Architecture &amp; Verification cohort, I designed and verified a <strong>4-bit ALU calculator in SystemVerilog</strong> and ran it on a Basys3 FPGA. Between them, I get to work at both ends of the stack: a message on a vehicle bus, and the gates that compute on a chip.</p>
 
         <h3>Software and AI</h3>
-        <p>I'm also interested in how language models handle technical reasoning. As an AI Training Fellow at Handshake AI, I evaluate frontier models through structured RLHF pipelines and audit AI-generated engineering and CS solutions for logical consistency. I've also shipped my own LLM applications as full-stack FastAPI and React/TypeScript apps. One is an agentic research assistant over THz photonics papers that I use for my own lab reading. The other is a financial research agent that writes schema-validated investment memos and is backed by a 149-test suite.</p>
+        <p>I'm also interested in how language models can be made trustworthy. I've shipped LLM applications as full-stack FastAPI and React/TypeScript apps. One is an agentic research assistant over THz photonics papers that I use for my own lab reading. The other is a financial research agent that writes schema-validated investment memos and is backed by a 149-test suite.</p>
 
         <h3>What's next</h3>
-        <p>I'm looking for <strong>Summer 2027 internships</strong> close to hardware, including photonics and optoelectronic devices, semiconductor test and validation, test and measurement automation, power electronics, and embedded systems. I'm happiest in roles that combine time at the bench with writing the software that runs it.</p>
+        <p>I'm looking for <strong>Summer 2027 internships</strong> close to hardware, including photonics and optoelectronic devices, semiconductor test and validation, test and measurement automation, analog and power electronics, and embedded systems. I'm happiest in roles that combine time at the bench with writing the software that runs it.</p>
       </div>
 
       <aside class="rail">
@@ -713,7 +779,7 @@ footer{
             <div class="t">University of California, Los Angeles</div>
             <div class="s">B.S. Electrical Engineering</div>
             <div class="s">Samueli School of Engineering</div>
-            <div class="s">GPA 3.74 · Expected June 2029</div>
+            <div class="s">GPA 3.74 · Expected 2028</div>
           </div>
         </div>
 
@@ -733,19 +799,19 @@ footer{
             <div class="s">Robotics Engineer, electrical subteam</div>
           </div>
           <div class="row">
-            <div class="t">IEEE at UCLA</div>
-            <div class="s">PCB layout, soldering, STM32</div>
+            <div class="t">UCLA Bruin Supermileage</div>
+            <div class="s">Embedded software team</div>
           </div>
           <div class="row">
-            <div class="t">ACM at UCLA</div>
-            <div class="s">Data structures, algorithms, applied ML</div>
+            <div class="t">IEEE at UCLA</div>
+            <div class="s">Digital Design, Architecture &amp; Verification</div>
           </div>
         </div>
       </aside>
     </div>
 
     <footer>
-      <span>© 2026 Haoran Ding</span>
+      <span>© 2026 Howard Ding</span>
       <span>Los Angeles, California</span>
     </footer>
 
@@ -764,10 +830,13 @@ footer{
       <p>Detailed write-ups of my research, engineering, and software work: the problem, how I approached it, and what came out of it.</p>
       <nav class="toc" aria-label="Projects">
         <a href="#projects/thz-qcl">Terahertz QCL</a>
+        <a href="#projects/hydrophone">Hydrophone Array</a>
+        <a href="#projects/backup-camera">Backup Camera</a>
+        <a href="#projects/alu-fpga">FPGA ALU</a>
         <a href="#projects/quantum-rag">Quantum RAG Assistant</a>
         <a href="#projects/market-analyst">Market Analyst Agent</a>
         <a href="#projects/line-follower">Line-Following Robot</a>
-        <a href="#projects/auv">Bruin Underwater Robotics</a>
+        <a href="#projects/auv">AUV Power &amp; Structure</a>
         <a href="#projects/mate-rov">MATE ROV</a>
         <a href="#projects/snake-scales">UCSB Research</a>
       </nav>
@@ -834,6 +903,125 @@ footer{
 
         <h3>Results</h3>
         <p>Using this system, I brought up the previously untested device and established its full operating envelope. The laser tunes from <strong>2.45 to 2.61&nbsp;THz</strong> with bias and operates up to a maximum temperature of <strong>133&nbsp;K</strong>. The automation suite and GUI remain in use, giving the group a standardized, repeatable way to characterize future devices.</p>
+      </div>
+    </article>
+
+    <!-- ---------------- Hydrophone array ---------------- -->
+    <article class="case" id="case-hydrophone">
+      <p class="eyebrow">Underwater robotics · Bruin Underwater Robotics · Sept 2025 – present</p>
+      <h2>A four-channel hydrophone array that lets an AUV find the pinger</h2>
+      <p class="summary">I'm designing the acoustic localization board for UCLA's autonomous underwater vehicle: four hydrophones, low-noise preamplifiers, and a simultaneous-sampling ADC that preserve the tiny arrival-time differences needed to compute a bearing to the competition's acoustic pinger.</p>
+
+      <div class="meta">
+        <div><div class="k">Role</div><div class="v">Robotics Engineer, electrical subteam</div></div>
+        <div><div class="k">Tools</div><div class="v">LTspice, OPA365, TLV320ADC5140, Teensy 4.1, Aquarian H2dM hydrophones</div></div>
+        <div><div class="k">Status</div><div class="v">Simulated in LTspice; bench validation planned after fabrication</div></div>
+      </div>
+
+      <div class="specs">
+        <div class="spec"><div class="n">~81 dB</div><div class="l">Simulated electronics noise floor, re 1 µPa</div></div>
+        <div class="spec"><div class="n">~25 ns</div><div class="l">Simulated channel mismatch, against ~590 ns per degree of bearing</div></div>
+        <div class="spec"><div class="n">≤5° RMS</div><div class="l">Bench-test pass criterion</div></div>
+      </div>
+
+      <div class="case-body">
+        <h3>The problem</h3>
+        <p>The competition's <strong>torpedo and octagon tasks</strong> are marked by an acoustic pinger that emits at <strong>25–40&nbsp;kHz</strong>. The current vehicle has no way to hear it, so it cannot navigate toward either task on its own. A hydrophone array gives the AUV that capability.</p>
+
+        <h3>How localization works</h3>
+        <p>Sound from the pinger reaches each of the four hydrophones at a slightly different moment. Those <strong>time differences of arrival</strong> encode the direction of the source. The catch is scale: in this geometry a single degree of bearing shifts the arrival times by only about <strong>590&nbsp;ns</strong>, so the electronics must not add timing error of their own. The whole design is organized around keeping the four channels matched in gain, phase, and sampling instant.</p>
+
+        <ol class="flow">
+          <li><div class="ft">Sense</div><div class="fd">Four Aquarian H2dM hydrophones pick up the 25–40 kHz pinger.</div></li>
+          <li><div class="ft">Amplify</div><div class="fd">OPA365 transimpedance preamplifiers convert and boost each signal.</div></li>
+          <li><div class="ft">Digitize</div><div class="fd">A TLV320ADC5140 samples all four channels simultaneously at 384 kHz.</div></li>
+          <li><div class="ft">Stream</div><div class="fd">A Teensy 4.1 streams the samples to the host over USB.</div></li>
+          <li><div class="ft">Localize</div><div class="fd">The host processes the four streams to estimate the bearing.</div></li>
+        </ol>
+        <p class="figcap">The signal chain, from water to bearing estimate.</p>
+
+        <h3>Why simultaneous sampling</h3>
+        <p>The measurement <em>is</em> the time difference between channels. A multiplexed converter would sample the channels one after another and introduce its own channel-to-channel skew, which would show up as a false bearing. A simultaneous-sampling ADC removes that error source by design.</p>
+
+        <h3>Simulating before building</h3>
+        <p>I simulated the board in <strong>LTspice</strong> across AC response, noise, supply ripple, and Monte Carlo component variation. The results:</p>
+        <ul>
+          <li>An electronics noise floor of about <strong>81&nbsp;dB re 1&nbsp;µPa</strong>.</li>
+          <li>A channel-to-channel mismatch of about <strong>25&nbsp;ns</strong> across Monte Carlo runs. Against roughly 590&nbsp;ns per degree of bearing, mismatch alone accounts for only about 0.04° of error.</li>
+        </ul>
+
+        <h3>Validation plan</h3>
+        <p>Simulation only goes so far, so I wrote a <strong>bench-test plan</strong> to run once the board is fabricated, with a pass criterion of <strong>5° RMS bearing error or better</strong>. The board hasn't been built yet, so the numbers above are simulated, not measured.</p>
+      </div>
+    </article>
+
+    <!-- ---------------- Backup camera ---------------- -->
+    <article class="case" id="case-backup-camera">
+      <p class="eyebrow">Embedded · UCLA Bruin Supermileage · Sept 2026 – present</p>
+      <h2>A CAN-triggered backup camera for a high-efficiency vehicle</h2>
+      <p class="summary">I'm writing the control software for a Raspberry Pi backup camera that listens to the vehicle's CAN bus and switches the driver's display from the HUD to a rear view as soon as reverse is engaged.</p>
+
+      <div class="meta">
+        <div><div class="k">Role</div><div class="v">Embedded Software Team Member</div></div>
+        <div><div class="k">Stack</div><div class="v">Python, Picamera2, SocketCAN / python-can, Raspberry Pi</div></div>
+        <div><div class="k">Hardware</div><div class="v">120° wide-angle camera, CAN bus, driver display</div></div>
+      </div>
+
+      <div class="case-body">
+        <h3>The goal</h3>
+        <p>The driver of a high-efficiency vehicle normally watches a heads-up display. When the vehicle goes into reverse, that display should give way to a clear view of what's behind it, and return to the HUD when reverse is released, with no button presses.</p>
+
+        <h3>How it works</h3>
+        <p>The trigger comes from the vehicle itself: the UI board already broadcasts the gear state as a CAN message, so the Pi only has to listen.</p>
+        <ol class="flow">
+          <li><div class="ft">Listen</div><div class="fd">SocketCAN and python-can receive frames from the vehicle bus.</div></li>
+          <li><div class="ft">Decode</div><div class="fd">Pick out the UI board's reverse-gear message and read its state.</div></li>
+          <li><div class="ft">Debounce</div><div class="fd">Filter the signal so a glitch can't flip the display.</div></li>
+          <li><div class="ft">Switch</div><div class="fd">A HUD / camera state machine changes the driver's view.</div></li>
+          <li><div class="ft">Overlay</div><div class="fd">Parking guide lines are drawn over the live video.</div></li>
+        </ol>
+        <p class="figcap">From a CAN frame to the driver's display.</p>
+
+        <ul>
+          <li><strong>Debouncing.</strong> A vehicle bus is noisy and a gear signal can flicker around a transition. Without debouncing, the display would flash between HUD and camera at exactly the moment the driver needs it to be stable.</li>
+          <li><strong>State machine.</strong> Two states, HUD and rear camera, with transitions driven by the debounced reverse signal, so the display's behavior stays predictable.</li>
+          <li><strong>Wide-angle video.</strong> Picamera2 captures from a 120° wide-angle camera, and the guide lines are overlaid on the frames before they reach the display.</li>
+        </ul>
+
+        <h3>Status</h3>
+        <p>This is in active development with the Embedded Software team.</p>
+      </div>
+    </article>
+
+    <!-- ---------------- FPGA ALU ---------------- -->
+    <article class="case" id="case-alu-fpga">
+      <p class="eyebrow">Digital design · IEEE at UCLA, DAV · Sept 2026 – present</p>
+      <h2>A 4-bit ALU calculator on a Basys3 FPGA</h2>
+      <p class="summary">I designed and verified a small arithmetic logic unit in SystemVerilog, then took it through the whole FPGA flow, from testbench simulation to a working calculator on a Basys3 board with a four-digit seven-segment display.</p>
+
+      <div class="meta">
+        <div><div class="k">Role</div><div class="v">Member, Digital Design, Architecture &amp; Verification (2026–27 cohort)</div></div>
+        <div><div class="k">Tools</div><div class="v">SystemVerilog, Vivado, Basys3 FPGA board</div></div>
+        <div><div class="k">Operations</div><div class="v">Add, subtract, shift</div></div>
+      </div>
+
+      <div class="case-body">
+        <h3>The flow</h3>
+        <p>The point of the project was to go through every stage of a real FPGA design, not just write the logic:</p>
+        <ol class="flow">
+          <li><div class="ft">Specify</div><div class="fd">A 4-bit ALU supporting add, subtract, and shift.</div></li>
+          <li><div class="ft">Describe</div><div class="fd">The datapath and control are written in SystemVerilog.</div></li>
+          <li><div class="ft">Verify</div><div class="fd">A testbench exercises the design in Vivado's simulator.</div></li>
+          <li><div class="ft">Build</div><div class="fd">Vivado synthesizes the design and generates the bitstream.</div></li>
+          <li><div class="ft">Test</div><div class="fd">The design runs on the Basys3 and is checked on hardware.</div></li>
+        </ol>
+        <p class="figcap">Testbench simulation through bitstream generation to on-board testing.</p>
+
+        <h3>Verifying before programming</h3>
+        <p>Hardware gives little visibility into a design, so verification starts in simulation. The testbench checks the ALU's behavior before a bitstream is ever generated, which makes the on-board test a confirmation rather than the first time the design runs.</p>
+
+        <h3>Showing the result</h3>
+        <p>The result is displayed on the board's <strong>four-digit seven-segment display</strong>. Those four digits share a single set of segment lines, so the display has to be driven by cycling through the digits fast enough that they all appear lit at once. It is a small piece of logic, but it makes the calculator something you can actually use.</p>
       </div>
     </article>
 
@@ -956,7 +1144,7 @@ footer{
     <article class="case" id="case-auv">
       <p class="eyebrow">Team engineering · Sept 2025 – present</p>
       <h2>Bruin Underwater Robotics: AUV power and structure</h2>
-      <p class="summary">As a Robotics Engineer on the electrical subteam of UCLA's ASME underwater robotics team, I own the step-down power stage of the AUV's battery management board, and I contribute to the vehicle's chassis and thruster layout.</p>
+      <p class="summary">As a Robotics Engineer on the electrical subteam of UCLA's ASME underwater robotics team, I own the step-down power stage of the AUV's battery management board, and I contribute to the vehicle's chassis and thruster layout. I'm also designing its <a href="#projects/hydrophone">hydrophone array</a>.</p>
 
       <div class="meta">
         <div><div class="k">Role</div><div class="v">Robotics Engineer, electrical subteam</div></div>
@@ -1023,7 +1211,7 @@ footer{
     </article>
 
     <footer>
-      <span>© 2026 Haoran Ding</span>
+      <span>© 2026 Howard Ding</span>
       <span>Los Angeles, California</span>
     </footer>
 
@@ -1050,7 +1238,7 @@ footer{
       <div class="entry">
         <div class="entry-top">
           <h3>University of California, Los Angeles</h3>
-          <span class="when">Expected June 2029</span>
+          <span class="when">Expected 2028</span>
         </div>
         <p class="where">B.S. Electrical Engineering · Samueli School of Engineering · GPA 3.74 / 4.00</p>
         <ul>
@@ -1086,35 +1274,10 @@ footer{
         <div class="links"><a class="chev" href="#projects/thz-qcl">Read the full case study</a></div>
       </div>
 
-      <div class="entry rise">
-        <div class="entry-top">
-          <h3>Student Researcher</h3>
-          <span class="when">June 2024 – July 2024</span>
-        </div>
-        <p class="where">University of California, Santa Barbara · Santa Barbara, CA</p>
-        <ul>
-          <li>Engineered bio-inspired snake-scale prototypes to minimize tribological friction, iteratively redesigning interlocking mechanisms to resolve critical 3D-printing tolerance failures.</li>
-          <li>Quantified performance using MATLAB and motion-tracking software to extract displacement and velocity datasets, accelerating design iteration cycles.</li>
-        </ul>
-        <p class="tools">MATLAB · motion tracking · CAD · 3D printing</p>
-        <div class="links"><a class="chev" href="#projects/snake-scales">Read more</a></div>
-      </div>
     </section>
 
     <section>
       <div class="sec-head"><h2>Experience</h2></div>
-
-      <div class="entry rise">
-        <div class="entry-top">
-          <h3>AI Training Fellow</h3>
-          <span class="when">January 2026 – present</span>
-        </div>
-        <p class="where">Handshake AI · Remote</p>
-        <ul>
-          <li>Evaluate and refine frontier large language models via structured Reinforcement Learning from Human Feedback (RLHF) pipelines, improving model reasoning quality and output accuracy.</li>
-          <li>Audit complex AI-generated technical solutions for logical consistency across engineering and CS domains, providing calibrated feedback that informs model fine-tuning.</li>
-        </ul>
-      </div>
 
       <div class="entry rise">
         <div class="entry-top">
@@ -1123,46 +1286,50 @@ footer{
         </div>
         <p class="where">Bruin Underwater Robotics (ASME) at UCLA · Los Angeles, CA</p>
         <ul>
-          <li>Responsible for the AUV battery management system (BMS) board's step-down subsystem, converting the 14.4 V battery rail to a regulated 9 V rail; the current revision uses an LDO, and I am developing a buck converter replacement to improve conversion and thermal efficiency.</li>
-          <li>Contributed to AUV chassis frame architecture and thruster configuration as part of the mechanical design team, evaluating trade-offs in rigidity, buoyancy distribution, and hydrodynamic stability while collaborating with the electrical subsystem team on component integration.</li>
+          <li>Designing a four-channel hydrophone system to localize the competition acoustic pinger (25–40 kHz) for the AUV's torpedo and octagon tasks, a capability the current vehicle lacks: four Aquarian H2dM hydrophones, OPA365 transimpedance preamplifiers, a TLV320ADC5140 simultaneous-sampling ADC (384 kHz), and a Teensy 4.1 streaming to the host over USB.</li>
+          <li>Simulated the board in LTspice (AC, noise, supply ripple, Monte Carlo): ~81 dB re 1 µPa electronics noise floor and ~25 ns channel mismatch versus ~590 ns per degree of bearing; wrote a bench-test plan (≤5° RMS pass criterion) for validation after fabrication.</li>
+          <li>Responsible for the step-down subsystem of the AUV battery management system (BMS) board, converting the 14.4 V battery rail to 9 V; developing a buck-converter replacement for the current LDO to improve efficiency and thermal performance.</li>
+          <li>Contributed to AUV chassis frame and thruster configuration, evaluating rigidity, buoyancy, and hydrodynamic stability trade-offs.</li>
+          <li>Previously led MATE ROV as Team CEO (2022–2025); 1st Place Overall and in Engineering &amp; Communication at the 2023 Monterey Regional.</li>
         </ul>
-        <p class="tools">Power electronics · buck converters · LDOs · Onshape · mechanical design</p>
-        <div class="links"><a class="chev" href="#projects/auv">Read more</a></div>
+        <p class="tools">LTspice · analog design · buck converters · KiCad · Teensy 4.1 · Onshape</p>
+        <div class="links">
+          <a class="chev" href="#projects/hydrophone">Hydrophone case study</a>
+          <a class="chev" href="#projects/auv">AUV power &amp; structure</a>
+          <a class="chev" href="#projects/mate-rov">MATE ROV</a>
+        </div>
       </div>
 
       <div class="entry rise">
         <div class="entry-top">
-          <h3>Team CEO</h3>
-          <span class="when">September 2022 – May 2025</span>
+          <h3>Embedded Software Team Member</h3>
+          <span class="when">September 2026 – present</span>
         </div>
-        <p class="where">MATE ROV Underwater Robotics · San Jose, CA</p>
+        <p class="where">UCLA Bruin Supermileage · Los Angeles, CA</p>
         <ul>
-          <li>Led a multidisciplinary team through the full design-build-pilot lifecycle of a Remotely Operated Vehicle, earning 1st Place Overall and 1st Place in Engineering &amp; Communication at the 2023 MATE ROV Monterey Regional.</li>
-          <li>Spearheaded CAD development of critical ROV components in Onshape, applying hydrodynamic design principles and iterative 3D-printing prototyping to minimize structural weight and improve efficiency.</li>
+          <li>Developing a Raspberry Pi backup camera system for the team's high-efficiency vehicle, pairing a 120° wide-angle camera with the CAN bus so the driver display switches from the HUD to a rear view when reverse is engaged.</li>
+          <li>Writing the Python control software (Picamera2, SocketCAN/python-can): decoding the UI board's reverse-gear CAN message, debouncing the signal, running a HUD/camera state machine, and overlaying parking guide lines on the video.</li>
         </ul>
-        <p class="tools">Onshape · 3D printing · team leadership</p>
-        <div class="links"><a class="chev" href="#projects/mate-rov">Read more</a></div>
+        <p class="tools">Python · Raspberry Pi · Picamera2 · SocketCAN · python-can · CAN bus</p>
+        <div class="links"><a class="chev" href="#projects/backup-camera">Read the case study</a></div>
+      </div>
+
+      <div class="entry rise">
+        <div class="entry-top">
+          <h3>Member, 2026–27 Cohort</h3>
+          <span class="when">September 2026 – present</span>
+        </div>
+        <p class="where">IEEE at UCLA, Digital Design, Architecture &amp; Verification (DAV) · Los Angeles, CA</p>
+        <ul>
+          <li>Designed and verified a 4-bit ALU calculator (add, subtract, shift) in SystemVerilog on a Basys3 FPGA using Vivado, from testbench simulation through bitstream generation to on-board testing, with a four-digit seven-segment display.</li>
+        </ul>
+        <p class="tools">SystemVerilog · Vivado · Basys3 FPGA</p>
+        <div class="links"><a class="chev" href="#projects/alu-fpga">Read the case study</a></div>
       </div>
     </section>
 
     <section>
       <div class="sec-head"><h2>Projects</h2></div>
-
-      <div class="entry rise">
-        <div class="entry-top">
-          <h3>AI-Powered Market Analyst Agent</h3>
-          <span class="when">2026</span>
-        </div>
-        <div class="chips"><span>Python</span><span>Gemini API</span><span>Financial Modeling Prep API</span><span>FastAPI</span><span>React/TypeScript</span></div>
-        <ul>
-          <li>Built a Gemini-powered agent that researches a public company (fundamentals, DCF, 10-K risk factors, earnings calls, peer comps) and writes a schema-validated Buy/Hold/Sell memo, with guardrails that reroute banks and insurers from DCF to P/B + ROE valuation.</li>
-          <li>Shipped it as a FastAPI + React/TypeScript app with live SSE streaming of the agent's tool calls and a 149-test suite (120 Python, 29 frontend); each analysis completes in 1–3 minutes versus hours of manual research.</li>
-        </ul>
-        <div class="links">
-          <a class="chev" href="#projects/market-analyst">Read the case study</a>
-          <a class="repo" href="https://github.com/HowardTaken/AI-Financial-Analyst" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 19c-4 1.2-4-2.2-5.5-2.8M15 21v-3.3c0-1 .1-1.4-.5-2 2.6-.3 5-1.3 5-5.5a4.3 4.3 0 00-1.2-3 4 4 0 00-.1-3s-1-.3-3.2 1.2a11 11 0 00-5.8 0C6.9 3 5.9 3.3 5.9 3.3a4 4 0 00-.1 3 4.3 4.3 0 00-1.2 3c0 4.2 2.4 5.2 5 5.5-.6.6-.6 1.2-.5 2V21"></path></svg> View on GitHub</a>
-        </div>
-      </div>
 
       <div class="entry rise">
         <div class="entry-top">
@@ -1199,10 +1366,10 @@ footer{
     <section>
       <div class="sec-head"><h2>Technical skills</h2></div>
       <div class="skills">
-        <div class="row"><div class="k">Languages &amp; tools</div><div class="chips"><span>MATLAB</span><span>Python</span><span>C++</span><span>C</span><span>Java</span><span>TypeScript</span><span>Git</span></div></div>
+        <div class="row"><div class="k">Languages &amp; tools</div><div class="chips"><span>MATLAB</span><span>Python</span><span>C++</span><span>C</span><span>SystemVerilog</span><span>Java</span><span>TypeScript</span><span>Git</span></div></div>
         <div class="row"><div class="k">Instrumentation</div><div class="chips"><span>Instrument control &amp; automation</span><span>GPIB</span><span>NI-VISA</span><span>FTIR spectroscopy</span><span>Lock-in amplifiers</span><span>Function &amp; pulse generators</span><span>Oscilloscopes</span><span>Cryostats</span><span>LabVIEW</span><span>MATLAB GUI development</span></div></div>
-        <div class="row"><div class="k">AI &amp; software</div><div class="chips"><span>Gemini API</span><span>RAG</span><span>ChromaDB</span><span>LangGraph</span><span>RLHF</span><span>FastAPI</span><span>React</span><span>Streamlit</span><span>REST API design</span><span>CI/CD</span><span>Vitest</span><span>React Testing Library</span></div></div>
-        <div class="row"><div class="k">Hardware &amp; design</div><div class="chips"><span>Arduino</span><span>STM32</span><span>Circuit analysis</span><span>Soldering</span><span>CAD (Onshape)</span><span>3D printing</span></div></div>
+        <div class="row"><div class="k">AI &amp; software</div><div class="chips"><span>Gemini API</span><span>RAG</span><span>ChromaDB</span><span>LangGraph</span><span>FastAPI</span><span>React</span><span>Streamlit</span><span>REST API design</span><span>CI/CD</span><span>Vitest</span><span>React Testing Library</span></div></div>
+        <div class="row"><div class="k">Hardware &amp; design</div><div class="chips"><span>Arduino</span><span>STM32</span><span>Circuit analysis</span><span>KiCad</span><span>LTspice</span><span>FPGA (Basys3 / Vivado)</span><span>Raspberry Pi</span><span>Soldering</span><span>CAD (Onshape)</span><span>3D printing</span></div></div>
       </div>
     </section>
 
@@ -1216,7 +1383,7 @@ footer{
     </section>
 
     <footer>
-      <span>© 2026 Haoran Ding</span>
+      <span>© 2026 Howard Ding</span>
       <span>Los Angeles, California</span>
     </footer>
 
@@ -1249,7 +1416,7 @@ footer{
 
       <a class="c-row" href="https://www.linkedin.com/in/haoran-ding-518930387" target="_blank" rel="noopener">
         <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"></rect><path d="M7 10.5V17M7 7.2v.1M11.5 17v-3.6c0-1.4.9-2.4 2.2-2.4s2.3.9 2.3 2.5V17"></path></svg></span>
-        <span><span class="k">LinkedIn</span><br><span class="v">Haoran Ding</span></span>
+        <span><span class="k">LinkedIn</span><br><span class="v">Howard Ding</span></span>
       </a>
 
       <a class="c-row" href="https://github.com/HowardTaken" target="_blank" rel="noopener">
@@ -1283,7 +1450,7 @@ footer{
     </section>
 
     <footer>
-      <span>© 2026 Haoran Ding</span>
+      <span>© 2026 Howard Ding</span>
       <span>Los Angeles, California</span>
     </footer>
 
@@ -1295,7 +1462,9 @@ footer{
 
 <script>
 /* ==================================================================
-   Animated wave graphics — banner field and avatar oscilloscope
+   Animated graphics — cycling home banner (five scenes) and the
+   avatar oscilloscope. One rAF loop; it runs only while a canvas is
+   on the active page and the tab is visible.
    ================================================================== */
 var Waves = (function(){
   "use strict";
@@ -1303,6 +1472,8 @@ var Waves = (function(){
   var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var scenes = [];
   var raf = null;
+  var TAU = Math.PI * 2;
+  var MONO = '"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace';
 
   function fit(s){
     var r = s.canvas.getBoundingClientRect();
@@ -1317,7 +1488,29 @@ var Waves = (function(){
     return true;
   }
 
-  // Banner: drifting terahertz wave packets on a dark field.
+  /* ---------- helpers ---------- */
+  function glow(c, x, y, r, rgb, a){
+    var g = c.createRadialGradient(x, y, 0, x, y, r);
+    g.addColorStop(0, "rgba(" + rgb + "," + a + ")");
+    g.addColorStop(1, "rgba(" + rgb + ",0)");
+    c.fillStyle = g;
+    c.fillRect(x - r, y - r, 2 * r, 2 * r);
+  }
+  function rnd(i, k){ var v = Math.sin(i * 12.9898 + k * 78.233) * 43758.5453; return v - Math.floor(v); }
+  function lerp(a, b, k){ return a + (b - a) * k; }
+  function smooth(x){ x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x); }
+  function hex(n, len){ var s = n.toString(16).toUpperCase(); while(s.length < len){ s = "0" + s; } return s; }
+  function rr(c, x, y, w, h, r){
+    c.beginPath(); c.moveTo(x + r, y);
+    c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r);
+    c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath();
+  }
+
+  /* Every scene draws in the band top..bot (clear of the nav above and the
+     pager below) and uses `wide` to drop side details on phones. `t` is
+     seconds since the scene came on screen. */
+
+  /* ---------- 1. Terahertz research: drifting wave packets ---------- */
   var field = [
     {y:.30, a:26, k:.020, v:.9,  p:0.0, c:"103,232,249", o:.55, sig:.30, drift:.05},
     {y:.42, a:34, k:.014, v:.6,  p:1.3, c:"96,165,250",  o:.45, sig:.38, drift:.035},
@@ -1327,32 +1520,349 @@ var Waves = (function(){
     {y:.72, a:18, k:.022, v:.8,  p:4.4, c:"103,232,249", o:.25, sig:.32, drift:.04}
   ];
 
-  function drawField(s, t){
-    var ctx = s.ctx, W = s.w, H = s.h;
-    ctx.clearRect(0, 0, W, H);
-    ctx.globalCompositeOperation = "lighter";
+  function sceneTHz(c, W, H, t){
+    glow(c, W * .18, H * .2, W * .38, "56,104,255", .30);
+    glow(c, W * .85, H * .7, W * .30, "167,139,250", .26);
+    glow(c, W * .60, H * .1, W * .25, "103,232,249", .14);
+    c.globalCompositeOperation = "lighter";
     field.forEach(function(f, i){
       var sig = W * f.sig;
       var span = W + 2 * sig;
       var cx = ((t * f.drift * W * .12 + i * W * .37) % span) - sig;
       // Two passes: a wide soft glow, then the crisp line.
       for(var pass = 0; pass < 2; pass++){
-        ctx.beginPath();
+        c.beginPath();
         for(var x = 0; x <= W; x += 3){
           var d = (x - cx) / sig;
           var env = .18 + .82 * Math.exp(-d * d);
           var y = H * f.y + f.a * env * Math.sin(x * f.k - t * f.v + f.p);
-          if(x === 0){ ctx.moveTo(x, y); } else { ctx.lineTo(x, y); }
+          if(x === 0){ c.moveTo(x, y); } else { c.lineTo(x, y); }
         }
-        ctx.strokeStyle = "rgba(" + f.c + "," + (pass ? f.o : f.o * .25) + ")";
-        ctx.lineWidth = pass ? 1.4 : 6;
-        ctx.stroke();
+        c.strokeStyle = "rgba(" + f.c + "," + (pass ? f.o : f.o * .25) + ")";
+        c.lineWidth = pass ? 1.4 : 6;
+        c.stroke();
       }
     });
-    ctx.globalCompositeOperation = "source-over";
+    c.globalCompositeOperation = "source-over";
   }
 
-  // Avatar: oscilloscope graticule with travelling wave packets.
+  /* ---------- 2. Underwater robotics: a pinger heard by a 4-hydrophone array.
+     Wavefronts expand from the pinger; each hydrophone lights when a front
+     reaches it, and the four traces on the right show the arrival-time
+     differences the real board has to resolve. ---------- */
+  function sceneBUR(c, W, H, t){
+    var top = H * .27, bot = H * .77, midY = (top + bot) / 2;
+    glow(c, W * .5, H * 1.15, W * .5, "20,184,166", .22);
+    glow(c, W * .82, H * .05, W * .32, "37,99,235", .30);
+    for(var i = 0; i < 4; i++){ // light shafts
+      var sx = W * (.12 + i * .24) + Math.sin(t * .25 + i * 1.7) * 40;
+      var g = c.createLinearGradient(0, 0, 0, H * .85);
+      g.addColorStop(0, "rgba(125,211,252,.11)"); g.addColorStop(1, "rgba(125,211,252,0)");
+      c.fillStyle = g;
+      c.beginPath(); c.moveTo(sx, 0); c.lineTo(sx + 70, 0); c.lineTo(sx + 190, H * .85); c.lineTo(sx + 20, H * .85); c.closePath(); c.fill();
+    }
+
+    var wide = W > 760;
+    var ax = W * (wide ? .58 : .66), ay = midY, half = Math.min(30, (bot - top) * .2);
+    var P = 1.5, sp = Math.max(W * .11, 90), R = W * .42;
+    var px0 = W * (wide ? .34 : .28), pr = W * .035;
+    function pos(tt){ return [px0 + Math.sin(tt * .35) * pr, midY - 18 + Math.cos(tt * .5) * (bot - top) * .18]; }
+    var nodes = [[ax - half, ay - half], [ax + half, ay - half], [ax - half, ay + half], [ax + half, ay + half]];
+    var hit = [0, 0, 0, 0], m0 = Math.floor(t / P), j;
+
+    c.lineWidth = 1.4;
+    for(var k = 0; k < 8; k++){
+      var te = (m0 - k) * P, r = (t - te) * sp;
+      if(r > R){ break; }
+      var p = pos(te), fa = 1 - r / R;
+      c.strokeStyle = "rgba(94,234,212," + (fa * .5) + ")";
+      c.beginPath(); c.arc(p[0], p[1], r, 0, TAU); c.stroke();
+      c.strokeStyle = "rgba(94,234,212," + (fa * .18) + ")";
+      c.beginPath(); c.arc(p[0], p[1], Math.max(0, r - 12), 0, TAU); c.stroke();
+      for(j = 0; j < 4; j++){
+        var diff = Math.abs(r - Math.hypot(nodes[j][0] - p[0], nodes[j][1] - p[1]));
+        if(diff < 14){ hit[j] = Math.max(hit[j], (1 - diff / 14) * Math.min(1, fa * 1.6)); }
+      }
+    }
+
+    // pinger, bearing line, array
+    var pp = pos(t), dx = pp[0] - ax, dy = pp[1] - ay, dl = Math.hypot(dx, dy) || 1;
+    glow(c, pp[0], pp[1], 30, "253,224,71", .35 + .15 * Math.sin(t * 9));
+    c.fillStyle = "#FDE047"; c.beginPath(); c.arc(pp[0], pp[1], 3.5, 0, TAU); c.fill();
+    c.font = "500 10px " + MONO; c.textAlign = "center"; c.fillStyle = "rgba(253,224,71,.7)";
+    c.fillText("pinger", pp[0], pp[1] + 22);
+    c.setLineDash([3, 6]); c.lineWidth = 1; c.strokeStyle = "rgba(253,224,71,.25)";
+    c.beginPath(); c.moveTo(ax, ay); c.lineTo(pp[0], pp[1]); c.stroke(); c.setLineDash([]);
+    c.lineWidth = 2; c.strokeStyle = "rgba(253,224,71,.85)";
+    c.beginPath(); c.moveTo(ax + dx / dl * (half + 10), ay + dy / dl * (half + 10));
+    c.lineTo(ax + dx / dl * (half + 44), ay + dy / dl * (half + 44)); c.stroke();
+
+    c.lineWidth = 1; c.strokeStyle = "rgba(255,255,255,.22)";
+    c.strokeRect(ax - half, ay - half, 2 * half, 2 * half);
+    for(j = 0; j < 4; j++){
+      if(hit[j] > 0){ glow(c, nodes[j][0], nodes[j][1], 26, "94,234,212", hit[j] * .8); }
+      c.fillStyle = "rgba(11,16,32,.9)"; c.strokeStyle = "rgba(94,234,212,.95)"; c.lineWidth = 1.6;
+      c.beginPath(); c.arc(nodes[j][0], nodes[j][1], 5, 0, TAU); c.fill(); c.stroke();
+    }
+
+    // four traces: the same wavefronts, seen as arrival-time differences
+    if(wide){
+      var x0 = ax + half + 70, L = Math.min(W * .17, 300), pps = L / 2.6;
+      c.font = "500 9px " + MONO; c.textAlign = "right"; c.lineWidth = 1.2;
+      for(j = 0; j < 4; j++){
+        var ry = ay + (j - 1.5) * 26;
+        c.fillStyle = "rgba(255,255,255,.35)"; c.fillText("CH" + (j + 1), x0 - 8, ry + 3);
+        c.strokeStyle = "rgba(94,234,212,.85)"; c.beginPath();
+        for(var x = 0; x <= L; x += 2){
+          var u = t - (L - x) / pps, v = 0;
+          for(var m = Math.floor((u - 5) / P); m <= Math.floor(u / P); m++){
+            var tm = m * P, q = pos(tm);
+            var d = u - (tm + Math.hypot(nodes[j][0] - q[0], nodes[j][1] - q[1]) / sp);
+            v += Math.exp(-d * d / .01) * Math.sin(d * 60);
+          }
+          if(x === 0){ c.moveTo(x0 + x, ry - 9 * v); } else { c.lineTo(x0 + x, ry - 9 * v); }
+        }
+        c.stroke();
+      }
+    }
+  }
+
+  /* ---------- 3. Supermileage: reverse gear on the CAN bus flips the
+     driver display from the HUD to the rear camera with parking guides. ---------- */
+  function sceneSMV(c, W, H, t){
+    var top = H * .27, bot = H * .77, h = bot - top, cy = (top + bot) / 2;
+    glow(c, W * .22, H * .15, W * .30, "34,197,94", .17);
+    glow(c, W * .85, H * .8, W * .28, "251,191,36", .13);
+    var wide = W > 760;
+    var fw = wide ? Math.min(W * .28, 420) : W * .56, cx = W * (wide ? .6 : .5);
+    var fx = cx - fw / 2, fy = top;
+    var u = t % 7.4, s = smooth((u - 3) / .5); // 0 = HUD, 1 = rear camera
+    var ga = c.globalAlpha, i;
+
+    // HUD: speed gauge inside a faint bezel
+    if(s < 1){
+      c.globalAlpha = ga * (1 - s);
+      c.strokeStyle = "rgba(255,255,255,.14)"; c.lineWidth = 1.5; rr(c, fx, fy, fw, h, 14); c.stroke();
+      var r = h * .46, gx = cx, gy = cy + r * .12, a0 = Math.PI * .8, a1 = Math.PI * 2.2;
+      var v = .5 + .14 * Math.sin(t * .9) + .05 * Math.sin(t * 2.3);
+      c.lineCap = "round"; c.lineWidth = 8; c.strokeStyle = "rgba(255,255,255,.12)";
+      c.beginPath(); c.arc(gx, gy, r, a0, a1); c.stroke();
+      c.strokeStyle = "rgba(52,211,153,.95)"; c.shadowColor = "rgba(52,211,153,.8)"; c.shadowBlur = 14;
+      c.beginPath(); c.arc(gx, gy, r, a0, a0 + (a1 - a0) * v); c.stroke(); c.shadowBlur = 0;
+      c.lineWidth = 1.5; c.strokeStyle = "rgba(255,255,255,.3)";
+      for(i = 0; i <= 24; i++){
+        var a = a0 + (a1 - a0) * i / 24, r2 = r - (i % 4 ? 21 : 26);
+        c.beginPath(); c.moveTo(gx + Math.cos(a) * (r - 16), gy + Math.sin(a) * (r - 16));
+        c.lineTo(gx + Math.cos(a) * r2, gy + Math.sin(a) * r2); c.stroke();
+      }
+      c.textAlign = "center"; c.textBaseline = "middle"; c.fillStyle = "rgba(255,255,255,.92)";
+      c.font = "600 " + Math.round(r * .62) + "px Manrope,sans-serif";
+      c.fillText(String(Math.round(v * 50)), gx, gy - 2);
+      c.font = "500 10px " + MONO; c.fillStyle = "rgba(255,255,255,.45)";
+      c.fillText("MPH", gx, gy + r * .62);
+      c.textBaseline = "alphabetic";
+    }
+
+    // Rear camera: road, parking guide lines, recording marks
+    if(s > 0){
+      c.globalAlpha = ga * s;
+      c.save(); rr(c, fx, fy, fw, h, 14); c.clip();
+      var bg = c.createLinearGradient(0, fy, 0, fy + h);
+      bg.addColorStop(0, "rgba(30,41,59,.9)"); bg.addColorStop(1, "rgba(15,23,42,.95)");
+      c.fillStyle = bg; c.fillRect(fx, fy, fw, h);
+      var hy = fy + h * .30, yTop = fy + h * .40, yBot = fy + h, sw = Math.sin(t * .7) * fw * .05;
+      c.lineWidth = 1.5; c.strokeStyle = "rgba(255,255,255,.16)";
+      c.beginPath(); c.moveTo(fx, hy); c.lineTo(fx + fw, hy); c.stroke();
+      c.beginPath(); c.moveTo(cx, hy); c.lineTo(cx - fw * .62, yBot); c.moveTo(cx, hy); c.lineTo(cx + fw * .62, yBot); c.stroke();
+      c.setLineDash([10, 14]); c.lineDashOffset = -t * 40;
+      c.beginPath(); c.moveTo(cx, hy); c.lineTo(cx, yBot); c.stroke(); c.setLineDash([]); c.lineDashOffset = 0;
+
+      var gxAt = function(side, yy){ var k = (yBot - yy) / (yBot - yTop); return cx + side * lerp(fw * .40, fw * .17, k) + sw * k; };
+      var gl = c.createLinearGradient(0, yTop, 0, yBot);
+      gl.addColorStop(0, "#22C55E"); gl.addColorStop(.55, "#FACC15"); gl.addColorStop(1, "#EF4444");
+      c.strokeStyle = gl; c.lineWidth = 3; c.lineCap = "round";
+      [-1, 1].forEach(function(side){
+        c.beginPath(); c.moveTo(gxAt(side, yBot), yBot); c.lineTo(gxAt(side, yTop), yTop); c.stroke();
+      });
+      var cols = ["#22C55E", "#FACC15", "#EF4444"], ys = [fy + h * .50, fy + h * .68, fy + h * .88];
+      for(i = 0; i < 3; i++){
+        c.strokeStyle = cols[i];
+        c.beginPath(); c.moveTo(gxAt(-1, ys[i]), ys[i]); c.lineTo(gxAt(1, ys[i]), ys[i]); c.stroke();
+      }
+      var sy = fy + ((t * 50) % h), sg = c.createLinearGradient(0, sy - 10, 0, sy + 10);
+      sg.addColorStop(0, "rgba(255,255,255,0)"); sg.addColorStop(.5, "rgba(255,255,255,.07)"); sg.addColorStop(1, "rgba(255,255,255,0)");
+      c.fillStyle = sg; c.fillRect(fx, sy - 10, fw, 20);
+      c.restore();
+
+      c.strokeStyle = "rgba(255,255,255,.4)"; c.lineWidth = 1.5; rr(c, fx, fy, fw, h, 14); c.stroke();
+      c.font = "500 10px " + MONO; c.fillStyle = "rgba(255,255,255,.75)";
+      c.textAlign = "left"; c.fillText("REAR", fx + 24, fy + 20);
+      c.textAlign = "right"; c.fillText("120°", fx + fw - 14, fy + 20);
+      if(Math.sin(t * 5) > 0){ c.fillStyle = "#EF4444"; c.beginPath(); c.arc(fx + 14, fy + 17, 3.5, 0, TAU); c.fill(); }
+    }
+    c.globalAlpha = ga;
+
+    // CAN traffic scrolling past, with the gear state on top
+    if(wide){
+      var tx = fx - 230, lh = 18, n = 7, idx = Math.floor(t * 2.5), fr = (t * 2.5) % 1;
+      c.font = "500 11px " + MONO; c.textAlign = "left";
+      c.fillStyle = s > .5 ? "rgba(251,191,36,.95)" : "rgba(255,255,255,.55)";
+      c.fillText(s > .5 ? "CAN · GEAR R → REAR CAM" : "CAN · GEAR D → HUD", tx, top + 4);
+      for(i = 0; i < n; i++){
+        var id = idx - (n - 1) + i, line = "0x" + hex(0x100 + Math.floor(rnd(id, 1) * 6) * 0x10, 3);
+        for(var b = 0; b < 4; b++){ line += " " + hex(Math.floor(rnd(id, 2 + b) * 256), 2); }
+        var ly = top + 28 + (i - fr) * lh;
+        if(ly < top + 18){ continue; } // keep the oldest row from touching the header
+        c.fillStyle = "rgba(167,243,208," + (.1 + .5 * (i + 1 - fr) / n) + ")";
+        c.fillText(line, tx, ly);
+      }
+    }
+  }
+
+  /* ---------- 4. DAV: a live 4-bit ALU — timing diagram feeding the
+     four-digit seven-segment display, as on the Basys3. ---------- */
+  var SEG = [63, 6, 91, 79, 102, 109, 125, 7, 127, 111, 119, 124, 57, 94, 121, 113]; // 0-F, bits a..g
+  var OPS = ["ADD", "SUB", "SHL"];
+
+  function drawDigit(c, x, y, w, h, val, rgb){
+    var m = SEG[val & 15], e = 5, my = y + h / 2;
+    var segs = [[x + e, y, x + w - e, y], [x + w, y + e, x + w, my - e], [x + w, my + e, x + w, y + h - e],
+                [x + e, y + h, x + w - e, y + h], [x, my + e, x, y + h - e], [x, y + e, x, my - e], [x + e, my, x + w - e, my]];
+    c.lineCap = "round"; c.lineWidth = 6;
+    for(var i = 0; i < 7; i++){
+      var on = m & (1 << i);
+      c.strokeStyle = "rgba(" + rgb + "," + (on ? .95 : .07) + ")";
+      c.shadowColor = on ? "rgba(" + rgb + ",.9)" : "transparent"; c.shadowBlur = on ? 12 : 0;
+      c.beginPath(); c.moveTo(segs[i][0], segs[i][1]); c.lineTo(segs[i][2], segs[i][3]); c.stroke();
+    }
+    c.shadowBlur = 0;
+  }
+
+  function aluStep(m){
+    var A = Math.floor(rnd(m, 11) * 16), B = Math.floor(rnd(m, 12) * 16), op = ((m % 3) + 3) % 3;
+    var res = (op === 0 ? A + B : op === 1 ? A - B : A << 1) & 31;
+    return {A: A, B: B, op: op, res: res};
+  }
+
+  function sceneDAV(c, W, H, t){
+    var top = H * .27, bot = H * .77, h = bot - top, cy = (top + bot) / 2;
+    glow(c, W * .72, H * .5, W * .30, "251,113,60", .18);
+    glow(c, W * .20, H * .10, W * .30, "59,130,246", .20);
+    var wide = W > 760, STEP = 1.6, step = Math.floor(t / STEP), cur = aluStep(step);
+
+    var dh = Math.min(h * .7, 96), dw = dh * .45, gap = dw * .45, total = 4 * dw + 3 * gap;
+    var dcx = W * (wide ? .72 : .5), dx0 = dcx - total / 2, dy0 = cy - dh / 2;
+    var digits = [cur.A, cur.B, cur.res >> 4, cur.res & 15];
+    for(var i = 0; i < 4; i++){ drawDigit(c, dx0 + i * (dw + gap), dy0, dw, dh, digits[i], "251,113,60"); }
+    c.font = "500 11px " + MONO; c.textAlign = "center"; c.fillStyle = "rgba(255,255,255,.5)";
+    c.fillText("A=" + hex(cur.A, 1) + "  B=" + hex(cur.B, 1) + "  " + OPS[cur.op] + " → " + hex(cur.res, 2), dcx, dy0 + dh + 24);
+
+    if(!wide){ return; }
+    var x1 = dx0 - 50, L = Math.min(W * .2, 340), x0 = x1 - L, pps = 80, cp = .4;
+    var rows = [cy - 36, cy, cy + 36], k;
+    c.font = "500 9px " + MONO; c.textAlign = "right"; c.fillStyle = "rgba(255,255,255,.35)";
+    ["clk", "op", "res"].forEach(function(n, j){ c.fillText(n, x0 - 8, rows[j] + 3); });
+
+    c.save(); c.beginPath(); c.rect(x0, cy - 56, L, 112); c.clip();
+    c.strokeStyle = "rgba(147,197,253,.85)"; c.lineWidth = 1.5; c.beginPath();
+    var kFirst = Math.floor((t - L / pps) / (cp / 2)), kLast = Math.ceil(t / (cp / 2)) + 1, yPrev = 0;
+    for(k = kFirst; k <= kLast; k++){
+      var xk = x1 - (t - k * cp / 2) * pps, yk = rows[0] + ((k & 1) ? 9 : -9);
+      if(k === kFirst){ c.moveTo(xk, yk); } else { c.lineTo(xk, yPrev); c.lineTo(xk, yk); }
+      yPrev = yk;
+    }
+    c.stroke();
+    c.font = "500 10px " + MONO; c.textAlign = "center"; c.lineWidth = 1.2;
+    for(var m = Math.floor((t - L / pps) / STEP); m <= step; m++){
+      var xs = x1 - (t - m * STEP) * pps, xe = xs + STEP * pps, st = aluStep(m);
+      [[rows[1], OPS[st.op], "147,197,253"], [rows[2], "0x" + hex(st.res, 2), "251,146,60"]].forEach(function(b){
+        c.strokeStyle = "rgba(" + b[2] + ",.85)"; c.beginPath();
+        c.moveTo(xs + 6, b[0] - 9); c.lineTo(xe - 6, b[0] - 9); c.lineTo(xe, b[0]); c.lineTo(xe - 6, b[0] + 9);
+        c.lineTo(xs + 6, b[0] + 9); c.lineTo(xs, b[0]); c.closePath(); c.stroke();
+        c.fillStyle = "rgba(255,255,255,.85)"; c.fillText(b[1], (xs + xe) / 2, b[0] + 3.5);
+      });
+    }
+    c.restore();
+  }
+
+  /* ---------- 5. Software & AI: an agentic RAG loop in embedding space.
+     The first retrieval is ungrounded (amber); the agent reformulates the
+     query, lands on the right cluster, and cites pages (cyan). ---------- */
+  var CL = [[.30, .40, .07], [.42, .72, .06], [.52, .22, .08], [.66, .55, .07], [.78, .26, .06], [.88, .70, .06]];
+  var pts = [];
+  for(var pi = 0; pi < 120; pi++){
+    var cl = CL[pi % 6];
+    pts.push({nx: cl[0] + (rnd(pi, 1) - .5) * cl[2] * 3.4, ny: cl[1] + (rnd(pi, 2) - .5) * cl[2] * 3.2, ph: rnd(pi, 3) * TAU});
+  }
+
+  function sceneAI(c, W, H, t){
+    glow(c, W * .30, H * .20, W * .30, "139,92,246", .26);
+    glow(c, W * .80, H * .80, W * .30, "240,171,252", .16);
+    glow(c, W * .60, H * .10, W * .20, "103,232,249", .12);
+    var P = 6.4, u = t % P, i;
+    function toX(nx){ return W * nx; }
+    function toY(ny){ return H * (.22 + .6 * ny); }
+    var pos = pts.map(function(p){
+      return {x: toX(p.nx) + Math.sin(t * .4 + p.ph) * 4, y: toY(p.ny) + Math.cos(t * .35 + p.ph) * 4};
+    });
+
+    // faint neighbourhood graph
+    var dd = Math.max(40, W * .04);
+    c.lineWidth = 1;
+    for(i = 0; i < pos.length; i++){
+      for(var j = i + 1; j < pos.length; j++){
+        var d = Math.hypot(pos[i].x - pos[j].x, pos[i].y - pos[j].y);
+        if(d < dd){
+          c.strokeStyle = "rgba(167,139,250," + ((1 - d / dd) * .14) + ")";
+          c.beginPath(); c.moveTo(pos[i].x, pos[i].y); c.lineTo(pos[j].x, pos[j].y); c.stroke();
+        }
+      }
+    }
+
+    // query: appears at A, glides to B after the first grade fails
+    var ax = toX(.56), ay = toY(.92), bx = toX(.66), by = toY(.55);
+    var mv = smooth((u - 2) / 1.2), qx = lerp(ax, bx, mv), qy = lerp(ay, by, mv);
+    var qa = u < .5 ? u / .5 : (u > 5.8 ? (P - u) / .6 : 1);
+    var good = smooth((u - 2.4) / .8);
+    var near = pos.map(function(p, n){ return {n: n, d: Math.hypot(p.x - qx, p.y - qy)}; })
+                  .sort(function(p, q){ return p.d - q.d; }).slice(0, 5);
+    var isNear = {};
+    near.forEach(function(o){ isNear[o.n] = true; });
+
+    for(i = 0; i < pos.length; i++){
+      var hot = isNear[i] ? qa : 0;
+      c.fillStyle = hot ? "rgba(" + (good > .5 ? "103,232,249" : "251,191,36") + "," + (.5 + .5 * hot) + ")" : "rgba(221,214,254,.42)";
+      c.beginPath(); c.arc(pos[i].x, pos[i].y, hot ? 3.6 : 2, 0, TAU); c.fill();
+    }
+    near.forEach(function(o){
+      var p = pos[o.n];
+      c.lineWidth = 1.2; c.setLineDash([4, 4]);
+      c.strokeStyle = "rgba(251,191,36," + (qa * (1 - good) * .6) + ")";
+      c.beginPath(); c.moveTo(qx, qy); c.lineTo(p.x, p.y); c.stroke(); c.setLineDash([]);
+      c.strokeStyle = "rgba(103,232,249," + (qa * good * .8) + ")";
+      c.beginPath(); c.moveTo(qx, qy); c.lineTo(p.x, p.y); c.stroke();
+    });
+
+    var pulse = (t * 1.2) % 1;
+    glow(c, qx, qy, 34, "196,181,253", .5 * qa);
+    c.strokeStyle = "rgba(196,181,253," + (qa * (1 - pulse) * .6) + ")"; c.lineWidth = 1.4;
+    c.beginPath(); c.arc(qx, qy, 6 + pulse * 26, 0, TAU); c.stroke();
+    c.fillStyle = "rgba(255,255,255," + qa + ")";
+    c.beginPath(); c.arc(qx, qy, 4.5, 0, TAU); c.fill();
+
+    var label = u < 2 ? "grade → ungrounded" : (u < 3.2 ? "reformulate query" : "grade → grounded");
+    var lc = u < 2 ? "251,191,36" : (u < 3.2 ? "196,181,253" : "74,222,128");
+    c.font = "500 11px " + MONO; c.textAlign = "left";
+    c.fillStyle = "rgba(" + lc + "," + (.9 * qa) + ")";
+    c.fillText(label, qx + 14, qy - 12);
+    if(u > 3.4){
+      var ca = smooth((u - 3.4) / .5) * qa;
+      c.fillStyle = "rgba(103,232,249," + (.9 * ca) + ")";
+      c.fillText(near.slice(0, 3).map(function(o){ return "[p." + (7 + (o.n * 5) % 31) + "]"; }).join(" "), qx + 14, qy + 6);
+    }
+  }
+
+  /* ---------- avatar: oscilloscope graticule with travelling wave packets ---------- */
   var traces = [
     {c:"167,139,250", a:.20, k:.16, v:3.2, sig:.20, ph:1.6, off:.5},
     {c:"103,232,249", a:.30, k:.22, v:4.0, sig:.16, ph:0,   off:0}
@@ -1389,9 +1899,87 @@ var Waves = (function(){
     });
   }
 
+  /* ---------- banner carousel: crossfades between scenes, Apple-style ---------- */
+  var BANNER = [
+    {name: "Terahertz photonics research", draw: sceneTHz,
+     head: "QCL · metal–metal waveguide", line: "f = <b>2.45–2.61 THz</b> · T<sub>max</sub> = <b>133 K</b>"},
+    {name: "Underwater robotics: hydrophone array", draw: sceneBUR,
+     head: "BUR · hydrophone array", line: "pinger <b>25–40 kHz</b> · f<sub>s</sub> = <b>384 kHz</b>"},
+    {name: "Supermileage: CAN backup camera", draw: sceneSMV,
+     head: "SMV · CAN backup camera", line: "reverse → <b>HUD ⇄ rear cam</b> · <b>120°</b>"},
+    {name: "Digital design: FPGA ALU", draw: sceneDAV,
+     head: "DAV · Basys3 FPGA", line: "SystemVerilog · <b>4-bit ALU</b> · Vivado"},
+    {name: "Software and AI: agentic RAG", draw: sceneAI,
+     head: "Agentic RAG · LangGraph", line: "grader loop · cited to <b>PDF page</b>"}
+  ];
+  var DUR = 6.5, FADE = .9;
+  var cur = 0, prev = -1, fade = 1, elapsed = 0, playing = !still, last = 0, nowT = 0, rt = null;
+  var born = BANNER.map(function(){ return 0; });
+  var pagerEl = document.getElementById("pager"), toggleEl = document.getElementById("pager-toggle"), readoutEl = document.getElementById("readout");
+  var dots = [];
+
+  function setReadout(i){
+    if(!readoutEl){ return; }
+    var html = BANNER[i].head + "<br>" + BANNER[i].line;
+    clearTimeout(rt);
+    if(still){ readoutEl.innerHTML = html; return; }
+    readoutEl.classList.add("out");
+    rt = setTimeout(function(){ readoutEl.innerHTML = html; readoutEl.classList.remove("out"); }, 320);
+  }
+
+  function mark(){
+    dots.forEach(function(d, i){
+      d.classList.toggle("on", i === cur);
+      d.style.setProperty("--p", 0);
+      if(i === cur){ d.setAttribute("aria-current", "true"); } else { d.removeAttribute("aria-current"); }
+    });
+  }
+
+  function go(i){
+    if(i === cur){ return; }
+    prev = cur; cur = i; elapsed = 0; fade = still ? 1 : 0; born[i] = nowT;
+    mark(); setReadout(i); start();
+  }
+
+  function drawBanner(s, t){
+    var c = s.ctx, dt = Math.max(0, Math.min(t - last, .1));
+    last = t; nowT = t;
+    if(playing){ elapsed += dt; if(elapsed >= DUR){ go((cur + 1) % BANNER.length); } }
+    if(fade < 1){ fade = Math.min(1, fade + dt / FADE); }
+    var e = smooth(fade);
+    c.clearRect(0, 0, s.w, s.h);
+    function run(i, alpha){
+      c.save(); c.globalAlpha = alpha;
+      BANNER[i].draw(c, s.w, s.h, still ? 2.4 : t - born[i]);
+      c.restore();
+    }
+    if(fade < 1 && prev >= 0){ run(prev, 1 - e); }
+    run(cur, fade < 1 ? e : 1);
+    if(dots[cur]){ dots[cur].style.setProperty("--p", (elapsed / DUR).toFixed(3)); }
+  }
+
+  if(pagerEl && toggleEl){
+    BANNER.forEach(function(b, i){
+      var d = document.createElement("button");
+      d.type = "button"; d.className = "pg"; d.setAttribute("aria-label", b.name);
+      d.appendChild(document.createElement("i"));
+      d.addEventListener("click", function(){ go(i); });
+      pagerEl.insertBefore(d, toggleEl); dots.push(d);
+    });
+    toggleEl.addEventListener("click", function(){
+      playing = !playing;
+      pagerEl.classList.toggle("paused", !playing);
+      toggleEl.setAttribute("aria-label", playing ? "Pause auto-rotate" : "Resume auto-rotate");
+      if(playing){ start(); }
+    });
+    pagerEl.classList.toggle("paused", !playing);
+    toggleEl.setAttribute("aria-label", playing ? "Pause auto-rotate" : "Resume auto-rotate");
+    mark();
+  }
+
   function add(id, draw){
-    var c = document.getElementById(id);
-    if(c && c.getContext){ scenes.push({canvas:c, ctx:c.getContext("2d"), draw:draw, w:0, h:0}); }
+    var cv = document.getElementById(id);
+    if(cv && cv.getContext){ scenes.push({canvas: cv, ctx: cv.getContext("2d"), draw: draw, w: 0, h: 0}); }
   }
 
   // Renders only while a canvas is on the active page; stops otherwise.
@@ -1408,11 +1996,11 @@ var Waves = (function(){
     if(raf === null){ raf = requestAnimationFrame(tick); }
   }
 
-  add("wave-field", drawField);
+  add("wave-field", drawBanner);
   add("scope", drawScope);
   window.addEventListener("resize", start);
   document.addEventListener("visibilitychange", start);
-  return { start:start };
+  return { start: start };
 })();
 
 /* ==================================================================
@@ -1458,7 +2046,7 @@ var Waves = (function(){
       a.classList.toggle("active", on);
       if(on){ a.setAttribute("aria-current","page"); } else { a.removeAttribute("aria-current"); }
     });
-    document.title = TITLES[name] ? "Haoran (Howard) Ding — " + TITLES[name] : "Haoran (Howard) Ding";
+    document.title = TITLES[name] ? "Howard Ding — " + TITLES[name] : "Howard Ding";
     reveal();
     Waves.start();
   }
